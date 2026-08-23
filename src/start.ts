@@ -5,14 +5,36 @@ import {
 } from "@tanstack/react-start";
 
 import { renderErrorPage } from "./lib/error-page";
-import {
-  securityHeadersInit,
-  withSecurityHeaders,
-} from "./lib/security-headers";
+import { securityHeadersInit, SECURITY_HEADERS } from "./lib/security-headers";
+
+/**
+ * TanStack Start middleware `next()` resolves to a context object whose
+ * `response` field holds the Response. Handle that shape (and a bare
+ * Response, defensively) without ever breaking rendering.
+ */
+function applyHeaders(target: unknown): void {
+  const res = target as { headers?: Headers } | undefined | null;
+  if (!res || typeof res.headers?.set !== "function") return;
+  for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
+    if (!res.headers.has(key)) {
+      try {
+        res.headers.set(key, value);
+      } catch {
+        // Immutable/locked headers: skip rather than fail the request.
+      }
+    }
+  }
+}
 
 const securityHeadersMiddleware = createMiddleware().server(
   async ({ next }) => {
-    return withSecurityHeaders(await next());
+    const result = await next();
+    if (result instanceof Response) {
+      applyHeaders(result);
+    } else if (result && typeof result === "object") {
+      applyHeaders((result as { response?: unknown }).response);
+    }
+    return result;
   },
 );
 

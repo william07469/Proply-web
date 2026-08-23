@@ -13,6 +13,11 @@ export function Contact() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
+    // Honeypot: bots fill every field; humans never see this one.
+    if ((fd.get("company_url") as string)?.trim()) {
+      setSent(true);
+      return;
+    }
     const lines = [
       "Merhaba! Web sitem için teklif almak istiyorum.",
       "",
@@ -20,7 +25,6 @@ export function Contact() {
       `İşletme: ${fd.get("business")}`,
       `E-posta: ${fd.get("email")}`,
       `Telefon: ${fd.get("phone")}`,
-      `Web sitesi var mı: ${fd.get("hasSite") ?? "Belirtilmedi"}`,
       "",
       `Proje: ${fd.get("details")}`,
     ];
@@ -49,7 +53,9 @@ export function Contact() {
                 Sorularınız için genellikle aynı gün dönüş yapıyoruz.
               </p>
               <a
-                href={waLink("Merhaba! Web sitem hakkında bilgi almak istiyorum.")}
+                href={waLink(
+                  "Merhaba! Web sitem hakkında bilgi almak istiyorum.",
+                )}
                 target="_blank"
                 rel="noreferrer"
                 className="group mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary transition-all hover:gap-3"
@@ -68,55 +74,95 @@ export function Contact() {
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <div>
-                <label htmlFor="name" className="mb-2 block text-xs font-semibold text-muted-foreground">
+                <label
+                  htmlFor="name"
+                  className="mb-2 block text-xs font-semibold text-muted-foreground"
+                >
                   Ad Soyad
                 </label>
-                <input id="name" name="name" required autoComplete="name" placeholder="Adınız Soyadınız" className={INPUT_CLASSES} />
+                <input
+                  id="name"
+                  name="name"
+                  required
+                  autoComplete="name"
+                  placeholder="Adınız Soyadınız"
+                  className={INPUT_CLASSES}
+                />
               </div>
               <div>
-                <label htmlFor="business" className="mb-2 block text-xs font-semibold text-muted-foreground">
+                <label
+                  htmlFor="business"
+                  className="mb-2 block text-xs font-semibold text-muted-foreground"
+                >
                   İşletme Adı
                 </label>
-                <input id="business" name="business" required autoComplete="organization" placeholder="İşletmenizin adı" className={INPUT_CLASSES} />
+                <input
+                  id="business"
+                  name="business"
+                  required
+                  autoComplete="organization"
+                  placeholder="İşletmenizin adı"
+                  className={INPUT_CLASSES}
+                />
               </div>
               <div>
-                <label htmlFor="email" className="mb-2 block text-xs font-semibold text-muted-foreground">
+                <label
+                  htmlFor="email"
+                  className="mb-2 block text-xs font-semibold text-muted-foreground"
+                >
                   E-posta
                 </label>
-                <input id="email" name="email" type="email" required autoComplete="email" placeholder="ornek@isletme.com" className={INPUT_CLASSES} />
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  placeholder="ornek@isletme.com"
+                  className={INPUT_CLASSES}
+                />
               </div>
               <div>
-                <label htmlFor="phone" className="mb-2 block text-xs font-semibold text-muted-foreground">
+                <label
+                  htmlFor="phone"
+                  className="mb-2 block text-xs font-semibold text-muted-foreground"
+                >
                   Telefon / WhatsApp
                 </label>
-                <input id="phone" name="phone" type="tel" required autoComplete="tel" placeholder="+90 5__ ___ __ __" className={INPUT_CLASSES} />
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  autoComplete="tel"
+                  placeholder="+90 5__ ___ __ __"
+                  className={INPUT_CLASSES}
+                />
               </div>
             </div>
 
-            <fieldset className="mt-5">
-              <legend className="mb-2 text-xs font-semibold text-muted-foreground">
-                Web sitesi var mı?
-              </legend>
-              <div className="flex gap-3">
-                {["Evet", "Hayır"].map((option) => (
-                  <label
-                    key={option}
-                    className="flex flex-1 cursor-pointer items-center gap-2.5 rounded-lg border border-input bg-surface px-4 py-3 text-sm transition-colors has-checked:border-primary/60 has-checked:bg-primary/10"
-                  >
-                    <input
-                      type="radio"
-                      name="hasSite"
-                      value={option}
-                      className="size-4 accent-[oklch(0.905_0.19_114)]"
-                    />
-                    {option}
-                  </label>
-                ))}
-              </div>
-            </fieldset>
+            <div className="hidden" aria-hidden="true">
+              <label
+                htmlFor="company_url"
+                className="mb-2 block text-xs font-semibold text-muted-foreground"
+              >
+                Şirket web sitesi (doldurmayın)
+              </label>
+              <input
+                id="company_url"
+                name="company_url"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                className={INPUT_CLASSES}
+              />
+            </div>
 
             <div className="mt-5">
-              <label htmlFor="details" className="mb-2 block text-xs font-semibold text-muted-foreground">
+              <label
+                htmlFor="details"
+                className="mb-2 block text-xs font-semibold text-muted-foreground"
+              >
                 Projeniz hakkında kısaca bilgi
               </label>
               <textarea
@@ -140,7 +186,8 @@ export function Contact() {
             {sent ? (
               <p className="mt-4 flex items-center justify-center gap-2 text-sm font-medium text-primary">
                 <Check className="size-4" />
-                Teşekkürler! Mesajınız WhatsApp üzerinden iletilmek üzere hazırlandı.
+                Teşekkürler! Mesajınız WhatsApp üzerinden iletilmek üzere
+                hazırlandı.
               </p>
             ) : null}
           </form>

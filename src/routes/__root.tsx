@@ -92,7 +92,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         { property: "og:type", content: "website" },
         {
           property: "og:image",
-          content: "/og-image.jpg",
+          content: "https://proply.com.tr/og-image.jpg",
         },
         { property: "og:image:width", content: "1440" },
         { property: "og:image:height", content: "912" },
@@ -101,7 +101,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           content: "PROPLY tarafından tasarlanan modern web sitesi örneği",
         },
         { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:image", content: "/og-image.jpg" },
+        {
+          name: "twitter:image",
+          content: "https://proply.com.tr/og-image.jpg",
+        },
       ],
       links: [
         {

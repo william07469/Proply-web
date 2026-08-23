@@ -36,17 +36,16 @@ export const SECURITY_HEADERS: Record<string, string> = {
     "camera=(), microphone=(), geolocation=(), interest-cohort=()",
 };
 
-/** Returns a shallow-copied Response with the security headers applied. */
+/**
+ * Applies security headers in-place on the response.
+ * Mutating headers (instead of rebuilding the Response) preserves the
+ * streamed body — reconstructing broke SSR output in dev.
+ */
 export function withSecurityHeaders(response: Response): Response {
-  const headers = new Headers(response.headers);
   for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
-    if (!headers.has(key)) headers.set(key, value);
+    if (!response.headers.has(key)) response.headers.set(key, value);
   }
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers,
-  });
+  return response;
 }
 
 /** Headers for bare-bones fallback responses built outside the middleware chain. */

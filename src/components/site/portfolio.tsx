@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
-import workOtantik from "@/assets/work-otantik.jpg";
-import workOlina from "@/assets/work-olina.jpg";
-import workWv from "@/assets/work-wv.jpg";
-import workKata from "@/assets/work-kata.jpg";
+import workOtantik from "@/assets/work-otantik.webp";
+import workOlina from "@/assets/work-olina.webp";
+import workWv from "@/assets/work-wv.webp";
+import workKata from "@/assets/work-kata.webp";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 

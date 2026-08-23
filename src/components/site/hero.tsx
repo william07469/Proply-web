@@ -6,7 +6,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import heroSite from "@/assets/hero-site.jpg";
+import heroSite from "@/assets/hero-site.webp";
 
 const TILT_SPRING = { stiffness: 140, damping: 20, mass: 0.5 };
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
