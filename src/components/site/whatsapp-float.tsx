@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { PHONE_NUMBERS } from "@/lib/site-data";
 
-const DEFAULT_MESSAGE = "Merhaba! Web sitem hakkında bilgi almak istiyorum.";
+const DEFAULT_MESSAGE = "Merhaba! İşletmem için web sitesi yaptırmak istiyorum, bilgi alabilir miyim?";
 
 const waLink = (number: string, message: string) =>
   `https://wa.me/${number.replace(/\D/g, "")}?text=${encodeURIComponent(message)}`;

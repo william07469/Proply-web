@@ -204,10 +204,10 @@ export const translations = {
         submit: "Teklif Gönder",
       },
       successMsg: "Teşekkürler! Mesajınız WhatsApp üzerinden iletilmek üzere hazırlandı.",
-      waMessage: "Merhaba! Web sitem için teklif almak istiyorum.",
-      waDefaultMessage: "Merhaba! Web sitem hakkında bilgi almak istiyorum.",
+      waMessage: "Merhaba! İşletmem için web sitesi yaptırmak istiyorum.",
+      waDefaultMessage: "Merhaba! İşletmem için web sitesi yaptırmak istiyorum, bilgi alabilir miyim?",
       formLines: {
-        greeting: "Merhaba! Web sitem için teklif almak istiyorum.",
+        greeting: "Merhaba! İşletmem için web sitesi yaptırmak istiyorum.",
         name: "Ad Soyad",
         business: "İşletme",
         email: "E-posta",
@@ -231,7 +231,7 @@ export const translations = {
       international: "Yurt Dışı",
       tooltip: "Hemen yazın",
       ariaLabel: "WhatsApp ile yazın",
-      defaultMessage: "Merhaba! Web sitem hakkında bilgi almak istiyorum.",
+      defaultMessage: "Merhaba! İşletmem için web sitesi yaptırmak istiyorum, bilgi alabilir miyim?",
     },
     // Meta
     meta: {
@@ -439,10 +439,10 @@ export const translations = {
         submit: "Send Quote Request",
       },
       successMsg: "Thank you! Your message has been prepared for delivery via WhatsApp.",
-      waMessage: "Hello! I'd like to get a quote for my website.",
-      waDefaultMessage: "Hello! I'd like to learn more about my website.",
+      waMessage: "Hello! I'd like to get a website built for my business.",
+      waDefaultMessage: "Hello! I'd like to get a website built for my business. Can you help?",
       formLines: {
-        greeting: "Hello! I'd like to get a quote for my website.",
+        greeting: "Hello! I'd like to get a website built for my business.",
         name: "Full Name",
         business: "Business",
         email: "Email",
@@ -464,7 +464,7 @@ export const translations = {
       international: "International",
       tooltip: "Message us",
       ariaLabel: "Chat on WhatsApp",
-      defaultMessage: "Hello! I'd like to learn more about my website.",
+      defaultMessage: "Hello! I'd like to get a website built for my business. Can you help?",
     },
     meta: {
       title: "PROPLY — Modern Websites",
