@@ -7,6 +7,8 @@ export const PHONE_NUMBERS = [
   { label: "Kanada", number: "+1 289 999 5739", href: "tel:+12899995739" },
 ] as const;
 
+export const CONTACT_EMAIL = "proplycrm@gmail.com";
+
 export const waLink = (message: string) =>
   `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ArrowRight, Check, MessageCircle } from "lucide-react";
-import { waLink } from "@/lib/site-data";
+import { ArrowRight, Check, Mail, MessageCircle } from "lucide-react";
+import { waLink, PHONE_NUMBERS, CONTACT_EMAIL } from "@/lib/site-data";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 
@@ -52,6 +52,25 @@ export function Contact() {
               <p className="mt-1.5 text-sm text-muted-foreground">
                 Sorularınız için genellikle aynı gün dönüş yapıyoruz.
               </p>
+              <div className="mt-4 flex flex-col gap-1.5">
+                {PHONE_NUMBERS.map((p) => (
+                  <a
+                    key={p.href}
+                    href={p.href}
+                    className="text-sm font-semibold text-foreground hover:text-primary transition-colors"
+                  >
+                    <span className="text-muted-foreground font-normal">{p.label}: </span>
+                    {p.number}
+                  </a>
+                ))}
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="text-sm font-semibold text-foreground hover:text-primary transition-colors"
+                >
+                  <span className="text-muted-foreground font-normal">E-posta: </span>
+                  {CONTACT_EMAIL}
+                </a>
+              </div>
               <a
                 href={waLink(
                   "Merhaba! Web sitem hakkında bilgi almak istiyorum.",

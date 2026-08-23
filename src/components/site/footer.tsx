@@ -1,5 +1,5 @@
-import { Instagram, Linkedin, Phone } from "lucide-react";
-import { NAV_LINKS, PHONE_NUMBERS } from "@/lib/site-data";
+import { Instagram, Linkedin, Mail, Phone } from "lucide-react";
+import { NAV_LINKS, PHONE_NUMBERS, CONTACT_EMAIL } from "@/lib/site-data";
 
 const SERVICE_LINKS = [
   "Kurumsal Web Sitesi",
@@ -98,6 +98,15 @@ export function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Mail className="size-3.5 shrink-0" />
+                  <span>{CONTACT_EMAIL}</span>
+                </a>
+              </li>
             </ul>
           </div>
         </div>
