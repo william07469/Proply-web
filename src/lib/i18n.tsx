@@ -521,3 +521,103 @@ export function useLang() {
   if (!ctx) throw new Error("useLang must be used inside LanguageProvider");
   return ctx;
 }
+
+// ── Comparison section translations (appended) ──
+export const comparisonTranslations = {
+  tr: {
+    kicker: "Neden Biz?",
+    title: "Doğru seçimi\nyapmak kolay.",
+    desc: "Her seçeneğin gerçek maliyetini, hızını ve kalitesini karşılaştırın.",
+    cols: ["PROPLY", "Freelancer", "Büyük Ajans"],
+    rows: [
+      {
+        label: "Teslim Süresi",
+        values: ["2–4 hafta", "4–10 hafta", "3–6 ay"],
+        highlight: 0,
+      },
+      {
+        label: "Fiyat Aralığı",
+        values: ["₺7.500–₺25.000", "₺3.000–₺15.000", "₺40.000+"],
+        highlight: 0,
+      },
+      {
+        label: "Tasarım Kalitesi",
+        values: ["Markaya özel", "Değişken", "Yüksek ama jenerik"],
+        highlight: 0,
+      },
+      {
+        label: "Mobil Uyumluluk",
+        values: ["✓ Standart", "Değişken", "✓ Standart"],
+        highlight: 0,
+      },
+      {
+        label: "SEO Temeli",
+        values: ["✓ Dahil", "Ek ücret", "✓ Dahil"],
+        highlight: 0,
+      },
+      {
+        label: "WhatsApp Entegrasyonu",
+        values: ["✓ Dahil", "Ek ücret", "Ek ücret"],
+        highlight: 0,
+      },
+      {
+        label: "Tek İletişim Noktası",
+        values: ["✓ Her zaman", "Bazen zor", "✗ Account manager"],
+        highlight: 0,
+      },
+      {
+        label: "Revizyon Süreci",
+        values: ["Hızlı & esnek", "Değişken", "Yavaş & bürokratik"],
+        highlight: 0,
+      },
+    ],
+  },
+  en: {
+    kicker: "Why Us?",
+    title: "Making the right\nchoice is easy.",
+    desc: "Compare the real cost, speed and quality of each option.",
+    cols: ["PROPLY", "Freelancer", "Large Agency"],
+    rows: [
+      {
+        label: "Delivery Time",
+        values: ["2–4 weeks", "4–10 weeks", "3–6 months"],
+        highlight: 0,
+      },
+      {
+        label: "Price Range",
+        values: ["₺7,500–₺25,000", "₺3,000–₺15,000", "₺40,000+"],
+        highlight: 0,
+      },
+      {
+        label: "Design Quality",
+        values: ["Brand-specific", "Variable", "High but generic"],
+        highlight: 0,
+      },
+      {
+        label: "Mobile Compatibility",
+        values: ["✓ Standard", "Variable", "✓ Standard"],
+        highlight: 0,
+      },
+      {
+        label: "SEO Foundation",
+        values: ["✓ Included", "Extra cost", "✓ Included"],
+        highlight: 0,
+      },
+      {
+        label: "WhatsApp Integration",
+        values: ["✓ Included", "Extra cost", "Extra cost"],
+        highlight: 0,
+      },
+      {
+        label: "Single Point of Contact",
+        values: ["✓ Always", "Sometimes hard", "✗ Account manager"],
+        highlight: 0,
+      },
+      {
+        label: "Revision Process",
+        values: ["Fast & flexible", "Variable", "Slow & bureaucratic"],
+        highlight: 0,
+      },
+    ],
+  },
+};

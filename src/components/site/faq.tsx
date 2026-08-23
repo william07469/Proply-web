@@ -29,7 +29,7 @@ export function Faq() {
                   : "Aradığınız soruyu bulamadınız mı? Bize doğrudan yazın."}
               </p>
               <a
-                href="#iletisim"
+                href="#contact"
                 className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline"
               >
                 {t.contact.waLink} →

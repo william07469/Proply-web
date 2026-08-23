@@ -25,7 +25,7 @@ export function Portfolio() {
   const [hero, ...grid] = projects;
 
   return (
-    <section id="calismalar" className="bg-background py-24 md:py-32">
+    <section id="works" className="bg-background py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeading kicker={t.portfolio.kicker} title={t.portfolio.title} description={t.portfolio.desc} />
 

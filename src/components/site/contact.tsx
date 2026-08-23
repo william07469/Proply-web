@@ -30,7 +30,7 @@ export function Contact() {
   };
 
   return (
-    <section id="iletisim" className="border-t border-foreground/10 bg-background py-24 md:py-32">
+    <section id="contact" className="border-t border-foreground/10 bg-background py-24 md:py-32">
       <div className="mx-auto grid max-w-7xl gap-16 px-5 md:px-10 lg:grid-cols-[1fr_1.4fr]">
         {/* Left info */}
         <div>

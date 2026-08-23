@@ -93,7 +93,7 @@ export function Navbar() {
           </button>
 
           <a
-            href="#iletisim"
+            href="#contact"
             className="group inline-flex items-center gap-1.5 bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-all duration-200 hover:bg-foreground"
           >
             {t.nav.cta}
@@ -144,7 +144,7 @@ export function Navbar() {
                 {lang === "tr" ? "EN" : "TR"}
               </button>
               <a
-                href="#iletisim"
+                href="#contact"
                 onClick={() => setOpen(false)}
                 className="bg-primary py-4 text-center text-base font-bold text-primary-foreground"
               >

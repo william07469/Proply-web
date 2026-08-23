@@ -13,7 +13,7 @@ export function WhatsAppFloat() {
 
   // Hide while the contact section is already on screen — avoids redundancy.
   useEffect(() => {
-    const contact = document.getElementById("iletisim");
+    const contact = document.getElementById("contact");
     if (!contact || typeof IntersectionObserver === "undefined") return;
     const observer = new IntersectionObserver(
       ([entry]) => setVisible(!entry.isIntersecting),

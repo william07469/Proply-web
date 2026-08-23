@@ -15,10 +15,10 @@ export const waLink = (message: string) =>
 
 export const NAV_HREFS = {
   home: "#top",
-  services: "#hizmetler",
-  works: "#calismalar",
-  process: "#surec",
-  contact: "#iletisim",
+  services: "#services",
+  works: "#works",
+  process: "#process",
+  contact: "#contact",
 } as const;
 
 export function getNavLinks(t: Translations) {
@@ -34,8 +34,8 @@ export function getNavLinks(t: Translations) {
 // Backward compat
 export const NAV_LINKS = [
   { label: "Ana Sayfa", href: "#top" },
-  { label: "Hizmetler", href: "#hizmetler" },
-  { label: "Çalışmalar", href: "#calismalar" },
-  { label: "Süreç", href: "#surec" },
-  { label: "İletişim", href: "#iletisim" },
+  { label: "Hizmetler", href: "#services" },
+  { label: "Çalışmalar", href: "#works" },
+  { label: "Süreç", href: "#process" },
+  { label: "İletişim", href: "#contact" },
 ] as const;

@@ -78,14 +78,14 @@ export function Hero() {
             </p>
             <div className="flex flex-wrap gap-3">
               <a
-                href="#iletisim"
+                href="#contact"
                 className="group inline-flex items-center gap-2 bg-primary px-7 py-3.5 text-sm font-bold text-primary-foreground transition-all hover:bg-foreground"
               >
                 {t.hero.cta1}
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
               </a>
               <a
-                href="#calismalar"
+                href="#works"
                 className="inline-flex items-center gap-2 border border-foreground/20 px-7 py-3.5 text-sm font-semibold text-foreground/70 transition-colors hover:border-foreground hover:text-foreground"
               >
                 {t.hero.cta2}

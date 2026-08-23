@@ -6,7 +6,7 @@ export function Process() {
   const { t } = useLang();
 
   return (
-    <section id="surec" className="border-y border-foreground/10 bg-surface py-24 md:py-32">
+    <section id="process" className="border-y border-foreground/10 bg-surface py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeading kicker={t.process.kicker} title={t.process.title} />
 

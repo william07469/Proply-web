@@ -7,6 +7,7 @@ import { Services } from "@/components/site/services";
 import { WhyProply } from "@/components/site/why";
 import { Portfolio } from "@/components/site/portfolio";
 import { Process } from "@/components/site/process";
+import { Comparison } from "@/components/site/comparison";
 import { Pricing } from "@/components/site/pricing";
 import { About } from "@/components/site/about";
 import { Faq } from "@/components/site/faq";
@@ -82,6 +83,7 @@ function Index() {
         <Portfolio />
         <Process />
         <Pricing />
+        <Comparison />
         <About />
         <Faq />
         <Cta />

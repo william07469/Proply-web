@@ -10,7 +10,7 @@ export function Pricing() {
   const { t, lang } = useLang();
 
   return (
-    <section id="fiyatlar" className="border-t border-foreground/10 bg-surface py-24 md:py-32">
+    <section id="pricing" className="border-t border-foreground/10 bg-surface py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeading kicker={t.pricing.kicker} title={t.pricing.title} align="center" />
 
@@ -64,7 +64,7 @@ export function Pricing() {
                 </ul>
 
                 <a
-                  href="#iletisim"
+                  href="#contact"
                   className={`group mt-8 inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold transition-all duration-200 ${
                     i === 1
                       ? "bg-primary text-primary-foreground hover:bg-foreground hover:text-background"

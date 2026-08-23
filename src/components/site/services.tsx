@@ -18,7 +18,7 @@ export function Services() {
   const FeaturedIcon = first.icon;
 
   return (
-    <section id="hizmetler" className="bg-background py-24 md:py-32">
+    <section id="services" className="bg-background py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeading kicker={t.services.kicker} title={t.services.title} />
 

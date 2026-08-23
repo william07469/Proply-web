@@ -59,8 +59,66 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
+const BASE_URL = "https://proply.com.tr";
+
+const SITEMAP_PAGES = [
+  { loc: "/",          priority: "1.0", changefreq: "weekly"  },
+  { loc: "/#services", priority: "0.8", changefreq: "monthly" },
+  { loc: "/#works",    priority: "0.8", changefreq: "monthly" },
+  { loc: "/#process",  priority: "0.7", changefreq: "monthly" },
+  { loc: "/#pricing",  priority: "0.7", changefreq: "monthly" },
+  { loc: "/#contact",  priority: "0.9", changefreq: "monthly" },
+];
+
+function buildSitemap(): string {
+  const today = new Date().toISOString().split("T")[0];
+  const urls = SITEMAP_PAGES.map(
+    (p) => `
+  <url>
+    <loc>${BASE_URL}${p.loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${p.changefreq}</changefreq>
+    <priority>${p.priority}</priority>
+  </url>`,
+  ).join("");
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}\n</urlset>`;
+}
+
+function buildRobots(): string {
+  return [
+    "User-agent: *",
+    "Allow: /",
+    "",
+    "Disallow: /_build/",
+    "Disallow: /__server",
+    "",
+    `Sitemap: ${BASE_URL}/sitemap.xml`,
+  ].join("\n");
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
+    const url = new URL(request.url);
+
+    // Serve sitemap and robots before passing to TanStack Start
+    if (url.pathname === "/sitemap.xml") {
+      return new Response(buildSitemap(), {
+        headers: {
+          "Content-Type": "application/xml; charset=utf-8",
+          "Cache-Control": "public, max-age=86400, s-maxage=86400",
+        },
+      });
+    }
+
+    if (url.pathname === "/robots.txt") {
+      return new Response(buildRobots(), {
+        headers: {
+          "Content-Type": "text/plain; charset=utf-8",
+          "Cache-Control": "public, max-age=86400, s-maxage=86400",
+        },
+      });
+    }
+
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);

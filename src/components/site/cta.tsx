@@ -37,7 +37,7 @@ export function Cta() {
           <Reveal delay={150}>
             <div className="flex flex-col gap-3 lg:pb-2">
               <a
-                href="#iletisim"
+                href="#contact"
                 className="group inline-flex items-center gap-2 bg-primary px-8 py-4 text-sm font-bold text-primary-foreground transition-all hover:bg-background hover:text-foreground"
               >
                 {t.cta.cta1}
