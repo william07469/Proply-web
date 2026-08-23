@@ -41,7 +41,11 @@ export const Route = createFileRoute("/")({
           name: "PROPLY",
           description: DESCRIPTION,
           telephone: "+905466982443",
-          areaServed: "TR",
+          contactPoint: [
+            { "@type": "ContactPoint", telephone: "+905466982443", contactType: "customer service", areaServed: "TR" },
+            { "@type": "ContactPoint", telephone: "+12899995739", contactType: "customer service", areaServed: "CA" },
+          ],
+          areaServed: ["TR", "CA"],
           priceRange: "₺₺",
           makesOffer: [
             "Kurumsal Web Sitesi",

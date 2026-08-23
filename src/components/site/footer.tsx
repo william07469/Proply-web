@@ -1,5 +1,5 @@
-import { Instagram, Linkedin } from "lucide-react";
-import { NAV_LINKS } from "@/lib/site-data";
+import { Instagram, Linkedin, Phone } from "lucide-react";
+import { NAV_LINKS, PHONE_NUMBERS } from "@/lib/site-data";
 
 const SERVICE_LINKS = [
   "Kurumsal Web Sitesi",
@@ -72,6 +72,29 @@ export function Footer() {
                     className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {service}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">
+              İletişim
+            </p>
+            <ul className="mt-4 space-y-3">
+              {PHONE_NUMBERS.map((phone) => (
+                <li key={phone.label}>
+                  <a
+                    href={phone.href}
+                    className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    <Phone className="size-3.5 shrink-0" />
+                    <span>
+                      <span className="font-medium text-foreground/80">{phone.label}</span>
+                      <br />
+                      {phone.number}
+                    </span>
                   </a>
                 </li>
               ))}
