@@ -5,8 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * PROPLY design system — dark luxury / modern tech.
- * Deep charcoal surfaces, white typography, one lime accent.
+ * PROPLY — Editorial Brutalism
+ * Cream/off-white surfaces, near-black type, one hot orange accent.
+ * Matbaa & baskı estetığından ilham.
  */
 
 @theme inline {
@@ -39,82 +40,79 @@
   --color-ring-offset-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
 }
 
 @theme {
-  --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    sans-serif;
+  /* Clash Display for headlines, DM Sans for body */
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Clash Display", "DM Sans", ui-sans-serif, system-ui, sans-serif;
 
   --animate-float: float 7s ease-in-out infinite;
   --animate-float-slow: float 9s ease-in-out 1.2s infinite;
   --animate-drift: drift 22s ease-in-out infinite alternate;
   --animate-drift-slow: drift-2 28s ease-in-out infinite alternate;
   --animate-marquee: marquee 32s linear infinite;
+  --animate-scan: scan 8s linear infinite;
 
   @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-12px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
   }
-
   @keyframes drift {
-    0% {
-      transform: translate(0, 0) scale(1);
-    }
-    100% {
-      transform: translate(70px, -40px) scale(1.15);
-    }
+    0%   { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(60px, -30px) scale(1.12); }
   }
-
   @keyframes drift-2 {
-    0% {
-      transform: translate(0, 0) scale(1.1);
-    }
-    100% {
-      transform: translate(-80px, 36px) scale(1);
-    }
+    0%   { transform: translate(0, 0) scale(1.1); }
+    100% { transform: translate(-60px, 30px) scale(1); }
   }
-
   @keyframes marquee {
-    to {
-      transform: translateX(-50%);
-    }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes scan {
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
   }
 }
 
 :root {
-  --radius: 0.75rem;
-  --background: oklch(0.135 0.006 264);
-  --foreground: oklch(0.965 0.004 250);
-  --card: oklch(0.16 0.007 264);
-  --card-foreground: oklch(0.965 0.004 250);
-  --popover: oklch(0.16 0.007 264);
-  --popover-foreground: oklch(0.965 0.004 250);
-  --primary: oklch(0.905 0.19 114);
-  --primary-foreground: oklch(0.21 0.045 118);
-  --secondary: oklch(0.19 0.008 264);
-  --secondary-foreground: oklch(0.965 0.004 250);
-  --muted: oklch(0.19 0.008 264);
-  --muted-foreground: oklch(0.66 0.012 258);
-  --accent: oklch(0.905 0.19 114);
-  --accent-foreground: oklch(0.21 0.045 118);
-  --destructive: oklch(0.62 0.2 24);
-  --destructive-foreground: oklch(0.97 0.004 250);
+  --radius: 0.25rem;
+
+  /* ── DARK THEME ── */
+  --background:    oklch(0.11 0.008 264);   /* deep charcoal */
+  --foreground:    oklch(0.96 0.006 80);    /* warm near-white */
+  --card:          oklch(0.15 0.008 264);   /* slightly lighter surface */
+  --card-foreground: oklch(0.96 0.006 80);
+  --popover:       oklch(0.15 0.008 264);
+  --popover-foreground: oklch(0.96 0.006 80);
+
+  /* Hot orange — unchanged, still the ONE accent */
+  --primary:          oklch(0.72 0.20 45);
+  --primary-foreground: oklch(0.10 0.020 40);
+
+  --secondary:        oklch(0.18 0.008 264);
+  --secondary-foreground: oklch(0.96 0.006 80);
+  --muted:            oklch(0.18 0.008 264);
+  --muted-foreground: oklch(0.55 0.010 260);
+  --accent:           oklch(0.72 0.20 45);
+  --accent-foreground: oklch(0.10 0.020 40);
+  --destructive:      oklch(0.58 0.22 25);
+  --destructive-foreground: oklch(0.97 0.004 80);
+
   --border: oklch(1 0 0 / 9%);
-  --input: oklch(1 0 0 / 13%);
-  --ring: oklch(0.905 0.19 114);
-  --surface: oklch(0.152 0.006 264);
-  --surface-2: oklch(0.185 0.008 264);
+  --input:  oklch(1 0 0 / 11%);
+  --ring:   oklch(0.72 0.20 45);
+
+  --surface:   oklch(0.145 0.008 264);
+  --surface-2: oklch(0.182 0.009 264);
+
+  /* Ink block — now the near-white for reversed sections */
+  --ink: oklch(0.96 0.006 80);
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
+  * { border-color: var(--color-border); }
 
   html {
     scroll-behavior: smooth;
@@ -137,67 +135,63 @@
   :focus-visible {
     outline: 2px solid var(--color-ring);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 2px;
   }
 
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--background);
-  }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--background); }
   ::-webkit-scrollbar-thumb {
-    background: var(--surface-2);
-    border-radius: 8px;
+    background: oklch(0.10 0.010 60 / 18%);
+    border-radius: 4px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+  html { scroll-behavior: auto; }
 }
 
-/* Subtle background helpers */
+/* ── Utilities ── */
+
+/* Fine dot grid — editorial / print feel */
 @utility bg-grid {
-  background-image:
-    linear-gradient(
-      to right,
-      color-mix(in oklab, var(--foreground) 4%, transparent) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(in oklab, var(--foreground) 4%, transparent) 1px,
-      transparent 1px
-    );
-  background-size: 54px 54px;
+  background-image: radial-gradient(
+    circle,
+    oklch(0.10 0.010 60 / 12%) 1px,
+    transparent 1px
+  );
+  background-size: 28px 28px;
 }
 
+/* Diagonal stripe texture for ink sections */
+@utility bg-stripe {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 4px,
+    oklch(1 0 0 / 3%) 4px,
+    oklch(1 0 0 / 3%) 5px
+  );
+}
+
+/* Orange glow */
 @utility glow-accent {
   background: radial-gradient(
     closest-side,
-    color-mix(in oklab, var(--primary) 16%, transparent),
+    color-mix(in oklab, var(--primary) 20%, transparent),
     transparent
   );
 }
 
 @utility mask-fade-y {
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    black 18%,
-    black 82%,
-    transparent
-  );
+  mask-image: linear-gradient(to bottom, transparent, black 18%, black 82%, transparent);
 }
 
 @utility mask-fade-x {
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 12%,
-    black 88%,
-    transparent
-  );
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+}
+
+/* Ink block helper */
+@utility ink-block {
+  background-color: var(--ink);
+  color: oklch(0.97 0.012 80);
 }

@@ -1,64 +1,52 @@
 import { MousePointerClick, Search, Smartphone, Zap } from "lucide-react";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
+import { useLang } from "@/lib/i18n";
 
-const FEATURES = [
-  {
-    n: "01",
-    icon: Smartphone,
-    title: "Mobil Öncelikli",
-    desc: "Telefon, tablet ve bilgisayarda kusursuz görünüm.",
-  },
-  {
-    n: "02",
-    icon: Zap,
-    title: "Hızlı",
-    desc: "Gereksiz yüklerden arındırılmış hızlı sayfalar.",
-  },
-  {
-    n: "03",
-    icon: Search,
-    title: "SEO Temeli",
-    desc: "Arama motorlarının anlayabileceği temiz yapı.",
-  },
-  {
-    n: "04",
-    icon: MousePointerClick,
-    title: "Müşteri Odaklı",
-    desc: "Ziyaretçiyi iletişime ve aksiyona yönlendiren tasarım.",
-  },
-];
+const ICONS = [Smartphone, Zap, Search, MousePointerClick];
 
 export function WhyProply() {
-  return (
-    <section className="border-y border-border bg-surface/60 py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <SectionHeading
-          kicker="Neden PROPLY"
-          title={"Sadece güzel değil.\nİşe yarayan siteler."}
-        />
+  const { t } = useLang();
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
-          {FEATURES.map((feature, i) => (
-            <Reveal key={feature.n} delay={i * 80} className="h-full">
-              <div className="group flex h-full flex-col bg-card p-7 transition-colors duration-300 hover:bg-surface-2">
-                <span className="font-mono text-sm font-semibold text-primary">
-                  {feature.n}
-                </span>
-                <feature.icon
-                  className="mt-8 size-6 text-muted-foreground transition-colors duration-300 group-hover:text-primary"
-                  strokeWidth={1.75}
-                  aria-hidden
-                />
-                <h3 className="mt-4 text-lg font-bold tracking-tight">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {feature.desc}
-                </p>
-              </div>
-            </Reveal>
-          ))}
+  return (
+    <section className="border-y border-foreground/10 bg-surface py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <SectionHeading kicker={t.why.kicker} title={t.why.title} />
+
+        <div className="mt-16 grid grid-cols-1 gap-px bg-foreground/10 sm:grid-cols-2">
+          {t.why.items.map((feature, i) => {
+            const Icon = ICONS[i];
+            return (
+              <Reveal key={feature.title} delay={i * 70}>
+                <div className="group flex flex-col gap-6 bg-surface p-10 transition-colors hover:bg-surface-2">
+                  <div className="flex items-start justify-between">
+                    <span
+                      className="text-4xl font-black tracking-tight text-primary/30"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <Icon
+                      className="size-6 text-foreground/20 transition-colors group-hover:text-primary"
+                      strokeWidth={1.5}
+                      aria-hidden
+                    />
+                  </div>
+                  <div>
+                    <h3
+                      className="text-xl font-black tracking-tight text-foreground"
+                      style={{ fontFamily: "var(--font-display)" }}
+                    >
+                      {feature.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/50">
+                      {feature.desc}
+                    </p>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </div>
     </section>

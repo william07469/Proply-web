@@ -12,24 +12,26 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { LanguageProvider, useLang } from "../lib/i18n";
 
 function NotFoundComponent() {
+  const { t } = useLang();
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">
-          Sayfa bulunamadı
+          {t.notFound.title}
         </h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          Aradığınız sayfa taşınmış veya hiç var olmamış olabilir.
+          {t.notFound.desc}
         </p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Ana Sayfaya Dön
+            {t.notFound.back}
           </Link>
         </div>
       </div>
@@ -38,6 +40,7 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+  const { t } = useLang();
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -48,11 +51,10 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          Bu sayfa yüklenemedi
+          {t.error.title}
         </h1>
         <p className="mt-2 text-sm text-muted-foreground">
-          Beklenmeyen bir sorun oluştu. Sayfayı yenileyebilir veya ana sayfaya
-          dönebilirsiniz.
+          {t.error.desc}
         </p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
@@ -62,13 +64,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Tekrar Dene
+            {t.error.retry}
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Ana Sayfaya Dön
+            {t.error.back}
           </a>
         </div>
       </div>
@@ -120,7 +122,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap",
+        },
+        {
+          rel: "stylesheet",
+          href: "https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap",
         },
       ],
     }),
@@ -150,10 +156,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <MotionConfig reducedMotion="user">
-        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-        <Outlet />
-      </MotionConfig>
+      <LanguageProvider>
+        <MotionConfig reducedMotion="user">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </MotionConfig>
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

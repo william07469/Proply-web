@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
-import { NAV_LINKS } from "@/lib/site-data";
+import { motion, AnimatePresence } from "framer-motion";
+import { getNavLinks } from "@/lib/site-data";
+import { useLang } from "@/lib/i18n";
 
 export function Navbar() {
+  const { lang, setLang, t } = useLang();
+  const navLinks = getNavLinks(t);
+
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#top");
@@ -17,129 +21,139 @@ export function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
 
   useEffect(() => {
-    const sections = NAV_LINKS.map((link) =>
-      document.getElementById(link.href.slice(1)),
-    ).filter((el): el is HTMLElement => el !== null);
-    if (sections.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
-        }
-      },
+    const sections = navLinks
+      .map((l) => document.getElementById(l.href.slice(1)))
+      .filter((el): el is HTMLElement => el !== null);
+    if (!sections.length) return;
+    const obs = new IntersectionObserver(
+      (entries) => { for (const e of entries) if (e.isIntersecting) setActive(`#${e.target.id}`); },
       { rootMargin: "-40% 0px -55% 0px" },
     );
-
-    for (const section of sections) observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
+    sections.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, [navLinks]);
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled || open
-          ? "border-b border-border bg-background/80 backdrop-blur-xl"
+          ? "border-b border-foreground/10 bg-background/90 backdrop-blur-md"
           : "border-b border-transparent bg-transparent"
       }`}
     >
-      <nav
-        className="relative z-50 mx-auto flex h-18 max-w-6xl items-center justify-between px-5 md:px-8"
-        aria-label="Ana gezinme"
-      >
+      <nav className="relative z-50 mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-10">
+        {/* Logo */}
         <a
           href="#top"
-          className="flex items-center gap-2.5 text-lg font-extrabold tracking-tight"
           onClick={() => setOpen(false)}
+          className="flex items-center gap-2 text-base font-bold tracking-tight"
+          style={{ fontFamily: "var(--font-display)" }}
         >
-          <span className="size-2.5 rounded-[3px] bg-primary" aria-hidden />
+          <span
+            className="flex size-6 items-center justify-center bg-primary text-[10px] font-black text-primary-foreground"
+            aria-hidden
+          >
+            P
+          </span>
           PROPLY
         </a>
 
-        <div className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
+        {/* Desktop */}
+        <div className="hidden items-center gap-7 md:flex">
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               className={`relative text-sm font-medium transition-colors hover:text-foreground ${
-                active === link.href
-                  ? "text-foreground"
-                  : "text-muted-foreground"
+                active === link.href ? "text-foreground" : "text-foreground/50"
               }`}
             >
               {link.label}
-              {active === link.href ? (
+              {active === link.href && (
                 <motion.span
-                  layoutId="nav-active-indicator"
-                  transition={{ type: "spring", stiffness: 380, damping: 32 }}
-                  className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-primary"
-                  aria-hidden
+                  layoutId="nav-dot"
+                  className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-primary"
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
-              ) : null}
+              )}
             </a>
           ))}
+
+          <button
+            type="button"
+            onClick={() => setLang(lang === "tr" ? "en" : "tr")}
+            aria-label={lang === "tr" ? "Switch to English" : "Türkçeye geç"}
+            className="border border-foreground/20 px-2.5 py-1 text-[11px] font-bold tracking-widest text-foreground/60 transition-colors hover:border-primary hover:text-primary"
+          >
+            {lang === "tr" ? "EN" : "TR"}
+          </button>
+
           <a
             href="#iletisim"
-            className="group inline-flex items-center gap-1.5 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-transform duration-200 hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-1.5 bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-all duration-200 hover:bg-foreground"
           >
-            Teklif Al
-            <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            {t.nav.cta}
+            <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
 
         <button
           type="button"
-          className="inline-flex size-10 items-center justify-center rounded-lg border border-border text-foreground md:hidden"
+          className="flex size-9 items-center justify-center border border-foreground/20 text-foreground md:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
-          aria-label={open ? "Menüyü kapat" : "Menüyü aç"}
+          aria-label={open ? "Kapat" : "Menü"}
         >
-          {open ? <X className="size-5" /> : <Menu className="size-5" />}
+          {open ? <X className="size-4" /> : <Menu className="size-4" />}
         </button>
       </nav>
 
-      {/* Full-screen mobile menu */}
-      <div
-        className={`fixed inset-0 z-40 flex flex-col justify-between bg-background px-6 pb-10 pt-28 transition-all duration-300 md:hidden ${
-          open
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
-        }`}
-        aria-hidden={!open}
-      >
-        <nav className="flex flex-col gap-2" aria-label="Mobil gezinme">
-          {NAV_LINKS.map((link, i) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className={`border-b border-border py-4 text-3xl font-extrabold tracking-tight transition-all duration-500 ${
-                open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-              }`}
-              style={{ transitionDelay: open ? `${120 + i * 60}ms` : "0ms" }}
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-        <a
-          href="#iletisim"
-          onClick={() => setOpen(false)}
-          className={`inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-base font-bold text-primary-foreground transition-all duration-500 ${
-            open ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-          }`}
-          style={{ transitionDelay: open ? "460ms" : "0ms" }}
-        >
-          Teklif Al
-          <ArrowUpRight className="size-5" />
-        </a>
-      </div>
+      {/* Mobile overlay */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 flex flex-col bg-background px-6 pb-10 pt-24 md:hidden"
+          >
+            <nav className="flex flex-col">
+              {navLinks.map((link, i) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className="border-b border-foreground/10 py-5 text-4xl font-bold tracking-tight text-foreground"
+                  style={{ fontFamily: "var(--font-display)", transitionDelay: `${i * 40}ms` }}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+            <div className="mt-auto flex flex-col gap-3">
+              <button
+                type="button"
+                onClick={() => setLang(lang === "tr" ? "en" : "tr")}
+                className="border border-foreground/20 py-3 text-sm font-bold tracking-widest text-foreground/60"
+              >
+                {lang === "tr" ? "EN" : "TR"}
+              </button>
+              <a
+                href="#iletisim"
+                onClick={() => setOpen(false)}
+                className="bg-primary py-4 text-center text-base font-bold text-primary-foreground"
+              >
+                {t.nav.cta}
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

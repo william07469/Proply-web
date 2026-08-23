@@ -1,110 +1,63 @@
 import { ArrowRight, Check } from "lucide-react";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
+import { useLang } from "@/lib/i18n";
 
-const PLANS = [
-  {
-    name: "STARTER",
-    price: "₺7.500",
-    suffix: "'den başlayan",
-    desc: "Temiz bir çevrimiçi görünüme ihtiyaç duyan işletmeler için.",
-    features: [
-      "Modern web sitesi",
-      "Responsive tasarım",
-      "Temel SEO",
-      "WhatsApp entegrasyonu",
-      "İletişim bölümü",
-    ],
-    cta: "Teklif Al",
-    popular: false,
-  },
-  {
-    name: "BUSINESS",
-    price: "₺12.500",
-    suffix: "'den başlayan",
-    desc: "Daha gelişmiş bir web sitesi isteyen işletmeler için.",
-    features: [
-      "Özel tasarım",
-      "Çoklu bölüm / sayfa",
-      "Gelişmiş animasyonlar",
-      "SEO kurulumu",
-      "WhatsApp entegrasyonu",
-      "Performans optimizasyonu",
-    ],
-    cta: "Teklif Al",
-    popular: true,
-  },
-  {
-    name: "CUSTOM",
-    price: "Özel Teklif",
-    suffix: "",
-    desc: "Daha büyük veya tamamen özelleştirilmiş projeler için.",
-    features: [
-      "Tamamen özel tasarım",
-      "Özel fonksiyonlar",
-      "Gelişmiş entegrasyonlar",
-      "İleri SEO",
-      "Kişiselleştirilmiş geliştirme",
-    ],
-    cta: "Projenizi Anlatın",
-    popular: false,
-  },
-];
+const PLAN_NAMES = ["STARTER", "BUSINESS", "CUSTOM"];
+const PLAN_PRICES = ["₺7.500", "₺12.500", null];
 
 export function Pricing() {
+  const { t, lang } = useLang();
+
   return (
-    <section id="fiyatlar" className="py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <SectionHeading
-          kicker="Fiyatlandırma"
-          title="Size uygun bir başlangıç noktası."
-          align="center"
-        />
+    <section id="fiyatlar" className="border-t border-foreground/10 bg-surface py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <SectionHeading kicker={t.pricing.kicker} title={t.pricing.title} align="center" />
 
-        <div className="mt-16 grid gap-5 lg:grid-cols-3">
-          {PLANS.map((plan, i) => (
-            <Reveal key={plan.name} delay={i * 90} className="h-full">
-              <article
-                className={`relative flex h-full flex-col rounded-2xl border p-8 transition-transform duration-300 hover:-translate-y-1 ${
-                  plan.popular
-                    ? "border-primary/60 bg-card shadow-[0_0_60px_-18px] shadow-primary/30"
-                    : "border-border bg-card"
-                }`}
-              >
-                {plan.popular ? (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-wider text-primary-foreground">
-                    En Popüler
-                  </span>
-                ) : null}
-
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">
-                  {plan.name}
-                </p>
-                <p className="mt-5">
-                  <span className="text-4xl font-extrabold tracking-tight">
-                    {plan.price}
-                  </span>
-                  {plan.suffix ? (
-                    <span className="ml-1.5 text-sm text-muted-foreground">
-                      {plan.suffix}
+        <div className="mt-16 grid gap-0 border border-foreground/10 lg:grid-cols-3">
+          {t.pricing.plans.map((plan, i) => (
+            <Reveal key={PLAN_NAMES[i]} delay={i * 70} className="h-full">
+              <article className={`flex h-full flex-col p-8 ${i < 2 ? "border-b border-foreground/10 lg:border-b-0 lg:border-r" : ""}`}>
+                <div className="flex items-start justify-between">
+                  <p className="text-[11px] font-black uppercase tracking-[0.28em] text-foreground/40">
+                    {PLAN_NAMES[i]}
+                  </p>
+                  {i === 1 && (
+                    <span className="border border-primary px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-primary">
+                      ★
                     </span>
-                  ) : null}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {plan.desc}
-                </p>
+                  )}
+                </div>
 
-                <ul className="mt-7 flex flex-1 flex-col gap-3 border-t border-border pt-7">
-                  {plan.features.map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-center gap-2.5 text-sm"
+                <div className="mt-6">
+                  {PLAN_PRICES[i] ? (
+                    <p>
+                      <span
+                        className="text-4xl font-black tracking-tight text-foreground"
+                        style={{ fontFamily: "var(--font-display)" }}
+                      >
+                        {PLAN_PRICES[i]}
+                      </span>
+                      {plan.suffix && (
+                        <span className="ml-1.5 text-xs text-foreground/40">{plan.suffix}</span>
+                      )}
+                    </p>
+                  ) : (
+                    <p
+                      className="text-2xl font-black tracking-tight text-foreground"
+                      style={{ fontFamily: "var(--font-display)" }}
                     >
-                      <Check
-                        className="size-4 shrink-0 text-primary"
-                        strokeWidth={2.5}
-                        aria-hidden
-                      />
+                      {lang === "en" ? "Custom Quote" : "Özel Teklif"}
+                    </p>
+                  )}
+                </div>
+
+                <p className="mt-3 text-sm leading-relaxed text-foreground/55">{plan.desc}</p>
+
+                <ul className="mt-7 flex flex-1 flex-col gap-3 border-t border-foreground/10 pt-7">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2.5 text-sm text-foreground/70">
+                      <Check className="mt-0.5 size-3.5 shrink-0 text-primary" strokeWidth={2.5} aria-hidden />
                       {feature}
                     </li>
                   ))}
@@ -112,14 +65,14 @@ export function Pricing() {
 
                 <a
                   href="#iletisim"
-                  className={`group mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold transition-all duration-200 hover:-translate-y-0.5 ${
-                    plan.popular
-                      ? "bg-primary text-primary-foreground"
-                      : "border border-border text-foreground hover:border-foreground/30"
+                  className={`group mt-8 inline-flex items-center justify-center gap-2 px-6 py-3 text-sm font-bold transition-all duration-200 ${
+                    i === 1
+                      ? "bg-primary text-primary-foreground hover:bg-foreground hover:text-background"
+                      : "border border-foreground/20 text-foreground hover:border-foreground hover:bg-foreground hover:text-background"
                   }`}
                 >
                   {plan.cta}
-                  <ArrowRight className="size-4 transition-transform duration-200 group-hover:translate-x-1" />
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </article>
             </Reveal>
@@ -127,9 +80,7 @@ export function Pricing() {
         </div>
 
         <Reveal delay={200}>
-          <p className="mt-8 text-center text-xs text-muted-foreground">
-            Fiyatlar projenin kapsamına ve ihtiyaçlarına göre değişebilir.
-          </p>
+          <p className="mt-6 text-center text-xs text-foreground/40">{t.pricing.note}</p>
         </Reveal>
       </div>
     </section>

@@ -36,7 +36,7 @@ export function WhatsAppFloat() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 8, scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 300, damping: 24 }}
-                className="flex flex-col gap-2 rounded-2xl border border-border bg-card p-3 shadow-2xl shadow-black/40"
+                className="flex flex-col gap-2 border border-foreground/10 bg-background p-3 shadow-2xl shadow-foreground/20"
               >
                 {PHONE_NUMBERS.map((p) => (
                   <a
@@ -45,7 +45,7 @@ export function WhatsAppFloat() {
                     target="_blank"
                     rel="noreferrer"
                     onClick={() => setOpen(false)}
-                    className="flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-primary/10 hover:text-primary"
+                    className="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold text-foreground transition-colors hover:bg-surface hover:text-primary"
                   >
                     <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-[#25d366]/15 text-[#25d366]">
                       <svg viewBox="0 0 24 24" fill="currentColor" className="size-4">
@@ -53,7 +53,7 @@ export function WhatsAppFloat() {
                       </svg>
                     </span>
                     <div className="flex flex-col leading-tight">
-                      <span className="text-xs text-muted-foreground font-normal">
+                      <span className="text-xs font-normal text-foreground/45">
                         {p.label === "Türkiye" ? "Yurt İçi" : "Yurt Dışı"}
                       </span>
                       <span>{p.number}</span>

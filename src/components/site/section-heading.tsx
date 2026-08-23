@@ -5,6 +5,7 @@ interface SectionHeadingProps {
   title: string;
   description?: string;
   align?: "left" | "center";
+  light?: boolean; /* use on dark/ink sections */
 }
 
 export function SectionHeading({
@@ -12,24 +13,31 @@ export function SectionHeading({
   title,
   description,
   align = "left",
+  light = false,
 }: SectionHeadingProps) {
   return (
-    <Reveal
-      className={
-        align === "center" ? "mx-auto max-w-2xl text-center" : "max-w-2xl"
-      }
-    >
-      <p className="text-xs font-bold uppercase tracking-[0.28em] text-primary">
-        {kicker}
-      </p>
-      <h2 className="mt-4 whitespace-pre-line text-3xl font-extrabold leading-[1.08] tracking-tight md:text-5xl">
+    <Reveal className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+      <div className={`mb-4 flex items-center gap-3 ${align === "center" ? "justify-center" : ""}`}>
+        <span className="h-px w-8 bg-primary" aria-hidden />
+        <p
+          className={`text-[11px] font-bold uppercase tracking-[0.3em] text-primary`}
+        >
+          {kicker}
+        </p>
+      </div>
+      <h2
+        className={`whitespace-pre-line text-[clamp(2rem,4.5vw,3.5rem)] font-black leading-[0.96] tracking-[-0.025em] ${
+          light ? "text-background" : "text-foreground"
+        }`}
+        style={{ fontFamily: "var(--font-display)" }}
+      >
         {title}
       </h2>
-      {description ? (
-        <p className="mt-5 leading-relaxed text-muted-foreground">
+      {description && (
+        <p className={`mt-5 text-base leading-relaxed ${light ? "text-background/60" : "text-foreground/60"}`}>
           {description}
         </p>
-      ) : null}
+      )}
     </Reveal>
   );
 }

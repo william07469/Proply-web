@@ -1,68 +1,82 @@
 import { ArrowUpRight, Car, Coffee, Globe, QrCode } from "lucide-react";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
+import { useLang } from "@/lib/i18n";
 
-const SERVICES = [
-  {
-    n: "01",
-    icon: Globe,
-    title: "Kurumsal Web Sitesi",
-    desc: "Modern ve profesyonel bir web sitesiyle markanızın internetteki görünümünü güçlendirin.",
-  },
-  {
-    n: "02",
-    icon: Coffee,
-    title: "Cafe & Restoran",
-    desc: "Menünüzü, konseptinizi ve işletmenizi müşterilerinize modern bir şekilde gösterin.",
-  },
-  {
-    n: "03",
-    icon: QrCode,
-    title: "Menü Sitesi",
-    desc: "QR kod üzerinden açılabilen hızlı, mobil uyumlu ve şık dijital menüler.",
-  },
-  {
-    n: "04",
-    icon: Car,
-    title: "Oto Detailing",
-    desc: "Araç bakım ve detailing işletmeleri için güçlü görsel sunum ve müşteri odaklı web siteleri.",
-  },
-];
+const ICONS = [Globe, Coffee, QrCode, Car];
 
 export function Services() {
-  return (
-    <section id="hizmetler" className="py-24 md:py-32">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
-        <SectionHeading
-          kicker="Hizmetler"
-          title="İhtiyacınız olan dijital görünüm, tek yerde."
-        />
+  const { t } = useLang();
 
-        <div className="mt-14 grid gap-4 md:grid-cols-2">
-          {SERVICES.map((service, i) => (
-            <Reveal key={service.n} delay={i * 80}>
-              <article className="group relative h-full rounded-2xl border border-border bg-card p-8 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:bg-surface-2">
-                <div className="flex items-start justify-between">
-                  <span className="font-mono text-sm text-muted-foreground">
+  const items = t.services.items.map((item, i) => ({
+    ...item,
+    icon: ICONS[i],
+    n: String(i + 1).padStart(2, "0"),
+  }));
+
+  const [first, ...rest] = items;
+  const FeaturedIcon = first.icon;
+
+  return (
+    <section id="hizmetler" className="bg-background py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <SectionHeading kicker={t.services.kicker} title={t.services.title} />
+
+        {/* Asymmetric layout: big item left, list right */}
+        <div className="mt-16 grid gap-0 border border-foreground/10 lg:grid-cols-[1.6fr_1fr]">
+          {/* Featured — first item, full-height left */}
+          <Reveal>
+            <article className="group relative flex flex-col justify-between border-b border-foreground/10 p-10 transition-colors hover:bg-surface lg:border-b-0 lg:border-r lg:min-h-[420px]">
+              <div className="flex items-start justify-between">
+                <span className="font-mono text-xs font-bold tracking-widest text-foreground/30">
+                  {first.n}
+                </span>
+                <span className="border border-foreground/10 p-2.5 text-foreground/50 transition-colors group-hover:border-primary group-hover:text-primary">
+                  <FeaturedIcon className="size-5" strokeWidth={1.5} />
+                </span>
+              </div>
+              <div className="mt-16">
+                <h3
+                  className="text-3xl font-black tracking-tight text-foreground"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {first.title}
+                </h3>
+                <p className="mt-3 max-w-xs text-sm leading-relaxed text-foreground/60">
+                  {first.desc}
+                </p>
+              </div>
+              <ArrowUpRight
+                className="absolute bottom-8 right-8 size-5 text-foreground/20 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary"
+                aria-hidden
+              />
+            </article>
+          </Reveal>
+
+          {/* Remaining items — stacked list */}
+          <div className="flex flex-col divide-y divide-foreground/10">
+            {items.slice(1).map((service, i) => (
+              <Reveal key={service.title} delay={(i + 1) * 60}>
+                <article className="group flex items-start gap-5 p-7 transition-colors hover:bg-surface">
+                  <span className="mt-0.5 font-mono text-xs font-bold tracking-widest text-foreground/30">
                     {service.n}
                   </span>
-                  <span className="flex size-11 items-center justify-center rounded-xl border border-border bg-surface text-foreground transition-colors duration-300 group-hover:border-primary/40 group-hover:text-primary">
-                    <service.icon className="size-5" strokeWidth={1.75} />
-                  </span>
-                </div>
-                <h3 className="mt-8 text-xl font-bold tracking-tight">
-                  {service.title}
-                </h3>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-                  {service.desc}
-                </p>
-                <ArrowUpRight
-                  className="absolute bottom-7 right-7 size-5 text-muted-foreground/50 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-primary"
-                  aria-hidden
-                />
-              </article>
-            </Reveal>
-          ))}
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                      <h3 className="font-bold text-foreground">{service.title}</h3>
+                      <service.icon
+                        className="size-4 shrink-0 text-foreground/30 transition-colors group-hover:text-primary"
+                        strokeWidth={1.5}
+                      />
+                    </div>
+                    <p className="mt-1.5 text-sm leading-relaxed text-foreground/55">
+                      {service.desc}
+                    </p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>

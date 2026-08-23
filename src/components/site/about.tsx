@@ -1,97 +1,81 @@
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
+import { useLang } from "@/lib/i18n";
+import { CheckCircle2 } from "lucide-react";
 
-const CODE_LINES = [
-  { indent: 0, tokens: [["const", "kw"], [" site ", "plain"], ["= {", "plain"]] },
-  { indent: 1, tokens: [["marka", "prop"], [": ", "plain"], ['"sizin-isletmeniz"', "str"], [",", "plain"]] },
-  { indent: 1, tokens: [["tasarim", "prop"], [": ", "plain"], ['"modern"', "str"], [",", "plain"]] },
-  { indent: 1, tokens: [["mobil", "prop"], [": ", "plain"], ["true", "kw"], [",", "plain"]] },
-  { indent: 1, tokens: [["hiz", "prop"], [": ", "plain"], ['"optimize"', "str"], [",", "plain"]] },
-  { indent: 1, tokens: [["seo", "prop"], [": ", "plain"], ["true", "kw"], [",", "plain"]] },
-  { indent: 1, tokens: [["iletisim", "prop"], [": ", "plain"], ['"whatsapp"', "str"], [",", "plain"]] },
-  { indent: 0, tokens: [["};", "plain"]] },
-  { indent: 0, tokens: [] },
-  { indent: 0, tokens: [["// Yayına hazır.", "comment"]] },
-] as const;
-
-const TOKEN_CLASSES: Record<string, string> = {
-  kw: "text-primary",
-  str: "text-foreground",
-  prop: "text-muted-foreground",
-  plain: "text-foreground/80",
-  comment: "text-muted-foreground/60",
-};
+const PROCESS_STEPS = [
+  { tr: "Tanışma & Brifing",    en: "Discovery & Brief" },
+  { tr: "Tasarım & Prototip",   en: "Design & Prototype" },
+  { tr: "Geliştirme & Test",    en: "Development & Testing" },
+  { tr: "Yayına Alma",          en: "Launch" },
+];
 
 export function About() {
+  const { t, lang } = useLang();
+
   return (
-    <section className="border-t border-border py-24 md:py-32">
-      <div className="mx-auto grid max-w-6xl items-center gap-14 px-5 md:px-8 lg:grid-cols-2">
+    <section className="border-t border-foreground/10 bg-background py-24 md:py-32">
+      <div className="mx-auto grid max-w-7xl items-start gap-16 px-5 md:px-10 lg:grid-cols-2">
+        {/* Text */}
         <div>
-          <SectionHeading kicker="PROPLY" title="Biz ne yapıyoruz?" />
-          <Reveal delay={120}>
-            <p className="mt-6 leading-relaxed text-muted-foreground">
-              PROPLY, işletmelerin dijital dünyada daha profesyonel görünmesine
-              yardımcı olan modern bir web stüdyosudur.
-            </p>
-            <p className="mt-4 leading-relaxed text-muted-foreground">
-              Tasarımdan geliştirmeye kadar sürecin tamamını üstleniyor, her
-              işletme için markasına uygun ve amacına hizmet eden web siteleri
-              oluşturuyoruz.
-            </p>
+          <SectionHeading kicker={t.about.kicker} title={t.about.title} />
+          <Reveal delay={100}>
+            <p className="mt-6 text-base leading-relaxed text-foreground/60">{t.about.p1}</p>
+            <p className="mt-4 text-base leading-relaxed text-foreground/60">{t.about.p2}</p>
           </Reveal>
-          <Reveal delay={200}>
-            <ul className="mt-8 flex flex-wrap gap-2.5">
-              {["Tasarım", "Geliştirme", "SEO", "Performans", "Destek"].map(
-                (tag) => (
-                  <li
-                    key={tag}
-                    className="rounded-full border border-border bg-card px-4 py-1.5 text-xs font-semibold text-muted-foreground"
-                  >
-                    {tag}
-                  </li>
-                ),
-              )}
-            </ul>
+          <Reveal delay={180}>
+            <div className="mt-10 flex flex-wrap gap-2">
+              {t.about.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="border border-foreground/10 bg-surface px-3.5 py-1.5 text-xs font-semibold text-foreground/60"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </Reveal>
         </div>
 
-        <Reveal delay={150}>
-          <div className="relative">
-            <div
-              aria-hidden
-              className="absolute -inset-8 glow-accent blur-2xl"
-            />
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-2xl shadow-black/50">
-              <div className="flex items-center gap-2 border-b border-border px-4 py-3">
-                <span className="size-2.5 rounded-full bg-muted-foreground/30" aria-hidden />
-                <span className="size-2.5 rounded-full bg-muted-foreground/30" aria-hidden />
-                <span className="size-2.5 rounded-full bg-muted-foreground/30" aria-hidden />
-                <span className="ml-3 font-mono text-[11px] text-muted-foreground">
-                  proply / proje.tsx
-                </span>
-              </div>
-              <pre className="overflow-x-auto p-5 font-mono text-[13px] leading-7">
-                {CODE_LINES.map((line, i) => (
-                  <div key={i} className="flex">
-                    <span className="w-8 select-none text-right text-muted-foreground/30">
-                      {i + 1}
+        {/* Process card */}
+        <Reveal delay={120}>
+          <div className="relative border border-foreground/10 bg-surface p-8 shadow-[6px_6px_0px_0px] shadow-primary/20">
+            {/* Orange top border */}
+            <div className="absolute inset-x-0 top-0 h-[3px] bg-primary" />
+
+            <p className="mb-8 text-[11px] font-bold uppercase tracking-[0.3em] text-primary">
+              {lang === "en" ? "How we work" : "Nasıl çalışıyoruz"}
+            </p>
+
+            <ol className="flex flex-col gap-0">
+              {PROCESS_STEPS.map((step, i) => (
+                <li key={step.tr} className="flex items-start gap-4">
+                  <div className="flex flex-col items-center">
+                    <span className="flex size-7 shrink-0 items-center justify-center bg-foreground text-[10px] font-black text-background">
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span style={{ paddingLeft: `${line.indent * 1.5}rem` }}>
-                      {line.tokens.map(([text, kind], j) => (
-                        <span key={j} className={TOKEN_CLASSES[kind]}>
-                          {text}
-                        </span>
-                      ))}
-                    </span>
+                    {i < PROCESS_STEPS.length - 1 && (
+                      <span className="my-1 h-6 w-px bg-foreground/10" aria-hidden />
+                    )}
                   </div>
-                ))}
-              </pre>
-            </div>
-            <div className="absolute -bottom-5 -right-3 animate-float rounded-xl border border-border bg-background/80 px-4 py-3 shadow-xl shadow-black/40 backdrop-blur-md md:-right-6">
-              <p className="text-[11px] font-medium text-muted-foreground">
-                Performans
+                  <p className="pb-5 pt-0.5 font-semibold text-foreground">
+                    {lang === "en" ? step.en : step.tr}
+                  </p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="mt-4 flex items-center gap-2.5 border border-primary/30 bg-primary/5 p-4">
+              <CheckCircle2 className="size-4 shrink-0 text-primary" />
+              <p className="text-sm font-semibold text-foreground">
+                {lang === "en" ? "Delivered in 2–4 weeks, every time." : "Her projede 2–4 haftada teslim."}
               </p>
-              <p className="text-sm font-extrabold text-primary">A+ skor</p>
+            </div>
+
+            {/* Floating badge */}
+            <div className="absolute -bottom-4 -right-4 border border-foreground/10 bg-background px-4 py-2.5 shadow-md">
+              <p className="text-[11px] font-semibold text-foreground/50">{t.about.perfLabel}</p>
+              <p className="font-black text-primary" style={{ fontFamily: "var(--font-display)" }}>{t.about.perfScore}</p>
             </div>
           </div>
         </Reveal>
