@@ -148,7 +148,7 @@ export const translations = {
         },
         {
           name: "PREMIUM",
-          price: "₺25.000 – ₺50.000+",
+          price: "₺35.000 – ₺60.000+",
           suffix: "",
           desc: "Daha gelişmiş tasarım, özel animasyonlar, gelişmiş SEO, entegrasyonlar ve özel fonksiyonlar.",
           features: [
@@ -428,7 +428,7 @@ export const translations = {
         },
         {
           name: "PREMIUM",
-          price: "₺25,000 – ₺50,000+",
+          price: "₺35,000 – ₺60,000+",
           suffix: "",
           desc: "Advanced design, custom animations, advanced SEO, integrations and custom functionality.",
           features: [
