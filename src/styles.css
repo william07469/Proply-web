@@ -190,10 +190,28 @@
   mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
 }
 
-/* Ink block helper */
+/* ── Ink block helper ── */
 @utility ink-block {
   background-color: var(--ink);
   color: oklch(0.97 0.012 80);
+}
+
+/* ── Global polish ── */
+
+/* Smooth link transitions everywhere */
+a {
+  transition: color 0.15s ease, opacity 0.15s ease;
+}
+
+/* Refined scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: oklch(1 0 0 / 10%);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(1 0 0 / 18%);
 }
 
 /* ── Blog article prose styles ── */
