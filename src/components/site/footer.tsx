@@ -3,7 +3,6 @@ import { PHONE_NUMBERS, CONTACT_EMAIL } from "@/lib/site-data";
 import { useLang } from "@/lib/i18n";
 import { getNavLinks } from "@/lib/site-data";
 import { Link } from "@tanstack/react-router";
-import logoImg from "@/assets/logo.png";
 
 export function Footer() {
   const { t, lang } = useLang();
@@ -18,14 +17,11 @@ export function Footer() {
           <div>
             <Link
               to="/"
-              className="flex items-center"
+              className="flex items-center gap-2 text-base font-black tracking-tight text-foreground"
+              style={{ fontFamily: "var(--font-display)" }}
             >
-              <img
-                src={logoImg}
-                alt="PROPLY"
-                height={32}
-                className="h-8 w-auto object-contain"
-              />
+              <span className="flex size-6 items-center justify-center bg-primary text-[10px] font-black text-primary-foreground">P</span>
+              PROPLY
             </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-foreground/40">
               {t.footer.tagline}

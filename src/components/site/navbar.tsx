@@ -3,10 +3,7 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "@tanstack/react-router";
 import { getNavLinks } from "@/lib/site-data";
-import { useLang } from "@/lib/i18n";
-import logoImg from "@/assets/logo.png";
-
-export function Navbar() {
+import { useLang } from "@/lib/i18n";export function Navbar() {
   const { lang, setLang, t } = useLang();
   const navLinks = getNavLinks(t);
   const location = useLocation();
@@ -64,14 +61,16 @@ export function Navbar() {
         <Link
           to="/"
           onClick={() => setOpen(false)}
-          className="flex items-center"
+          className="flex items-center gap-2 text-base font-bold tracking-tight text-foreground"
+          style={{ fontFamily: "var(--font-display)" }}
         >
-          <img
-            src={logoImg}
-            alt="PROPLY"
-            height={44}
-            className="h-11 w-auto object-contain"
-          />
+          <span
+            className="flex size-6 items-center justify-center bg-primary text-[10px] font-black text-primary-foreground"
+            aria-hidden
+          >
+            P
+          </span>
+          PROPLY
         </Link>
 
         {/* Desktop */}
