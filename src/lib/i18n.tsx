@@ -117,7 +117,7 @@ export const translations = {
       plans: [
         {
           name: "STARTER",
-          price: "₺9.900",
+          price: "₺15.000",
           suffix: "'den başlayan",
           desc: "Küçük işletmeler ve temel kurumsal web siteleri için sağlam bir dijital başlangıç.",
           features: [
@@ -132,7 +132,7 @@ export const translations = {
         },
         {
           name: "BUSINESS",
-          price: "₺17.500",
+          price: "₺24.000",
           suffix: "'den başlayan",
           desc: "Profesyonel tasarım, mobil uyumluluk, SEO ve işletmeye özel geliştirmeler içeren standart paket.",
           features: [
@@ -397,7 +397,7 @@ export const translations = {
       plans: [
         {
           name: "STARTER",
-          price: "₺9,900",
+          price: "₺15,000",
           suffix: " starting from",
           desc: "A solid digital start for small businesses and basic corporate websites.",
           features: [
@@ -412,7 +412,7 @@ export const translations = {
         },
         {
           name: "BUSINESS",
-          price: "₺17,500",
+          price: "₺24,000",
           suffix: " starting from",
           desc: "Professional design, mobile compatibility, SEO and business-specific development.",
           features: [
@@ -619,7 +619,7 @@ export const comparisonTranslations = {
       },
       {
         label: "Fiyat Aralığı",
-        values: ["₺9.900'den başlayan", "₺3.000–₺15.000", "₺40.000+"],
+        values: ["₺15.000'den başlayan", "₺3.000–₺15.000", "₺40.000+"],
         highlight: 0,
       },
       {
@@ -667,7 +667,7 @@ export const comparisonTranslations = {
       },
       {
         label: "Price Range",
-        values: ["From ₺9,900", "₺3,000–₺15,000", "₺40,000+"],
+        values: ["From ₺15,000", "₺3,000–₺15,000", "₺40,000+"],
         highlight: 0,
       },
       {
