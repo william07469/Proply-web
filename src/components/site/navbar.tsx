@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, useLocation } from "@tanstack/react-router";
 import { getNavLinks } from "@/lib/site-data";
 import { useLang } from "@/lib/i18n";
 
 export function Navbar() {
   const { lang, setLang, t } = useLang();
   const navLinks = getNavLinks(t);
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState("#top");
+  const [activeHash, setActiveHash] = useState("#top");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -24,18 +27,28 @@ export function Navbar() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  // Scroll-spy only on home page
   useEffect(() => {
-    const sections = navLinks
+    if (!isHome) return;
+    const hashLinks = navLinks.filter((l) => l.href.startsWith("#"));
+    const sections = hashLinks
       .map((l) => document.getElementById(l.href.slice(1)))
       .filter((el): el is HTMLElement => el !== null);
     if (!sections.length) return;
     const obs = new IntersectionObserver(
-      (entries) => { for (const e of entries) if (e.isIntersecting) setActive(`#${e.target.id}`); },
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActiveHash(`#${e.target.id}`);
+      },
       { rootMargin: "-40% 0px -55% 0px" },
     );
     sections.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
-  }, [navLinks]);
+  }, [isHome, navLinks]);
+
+  const isActive = (href: string) => {
+    if (href.startsWith("#")) return isHome && activeHash === href;
+    return location.pathname.startsWith(href);
+  };
 
   return (
     <header
@@ -47,8 +60,8 @@ export function Navbar() {
     >
       <nav className="relative z-50 mx-auto flex h-16 max-w-7xl items-center justify-between px-5 md:px-10">
         {/* Logo */}
-        <a
-          href="#top"
+        <Link
+          to="/"
           onClick={() => setOpen(false)}
           className="flex items-center gap-2 text-base font-bold tracking-tight"
           style={{ fontFamily: "var(--font-display)" }}
@@ -60,28 +73,40 @@ export function Navbar() {
             P
           </span>
           PROPLY
-        </a>
+        </Link>
 
         {/* Desktop */}
         <div className="hidden items-center gap-7 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`relative text-sm font-medium transition-colors hover:text-foreground ${
-                active === link.href ? "text-foreground" : "text-foreground/50"
-              }`}
-            >
-              {link.label}
-              {active === link.href && (
-                <motion.span
-                  layoutId="nav-dot"
-                  className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-primary"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
+            const isHash = link.href.startsWith("#");
+            const cls = `relative text-sm font-medium transition-colors hover:text-foreground ${
+              active ? "text-foreground" : "text-foreground/50"
+            }`;
+            return isHash ? (
+              <a key={link.href} href={isHome ? link.href : `/${link.href}`} className={cls}>
+                {link.label}
+                {active && (
+                  <motion.span
+                    layoutId="nav-dot"
+                    className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-primary"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+              </a>
+            ) : (
+              <Link key={link.href} to={link.href} className={cls}>
+                {link.label}
+                {active && (
+                  <motion.span
+                    layoutId="nav-dot"
+                    className="absolute -bottom-0.5 left-0 right-0 h-[2px] bg-primary"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  />
+                )}
+              </Link>
+            );
+          })}
 
           <button
             type="button"
@@ -93,7 +118,7 @@ export function Navbar() {
           </button>
 
           <a
-            href="#contact"
+            href={isHome ? "#contact" : "/#contact"}
             className="group inline-flex items-center gap-1.5 bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition-all duration-200 hover:bg-foreground"
           >
             {t.nav.cta}
@@ -123,17 +148,32 @@ export function Navbar() {
             className="fixed inset-0 z-40 flex flex-col bg-background px-6 pb-10 pt-24 md:hidden"
           >
             <nav className="flex flex-col">
-              {navLinks.map((link, i) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="border-b border-foreground/10 py-5 text-4xl font-bold tracking-tight text-foreground"
-                  style={{ fontFamily: "var(--font-display)", transitionDelay: `${i * 40}ms` }}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link, i) => {
+                const isHash = link.href.startsWith("#");
+                const cls =
+                  "border-b border-foreground/10 py-5 text-4xl font-bold tracking-tight text-foreground";
+                return isHash ? (
+                  <a
+                    key={link.href}
+                    href={isHome ? link.href : `/${link.href}`}
+                    onClick={() => setOpen(false)}
+                    className={cls}
+                    style={{ fontFamily: "var(--font-display)", transitionDelay: `${i * 40}ms` }}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.href}
+                    to={link.href}
+                    onClick={() => setOpen(false)}
+                    className={cls}
+                    style={{ fontFamily: "var(--font-display)", transitionDelay: `${i * 40}ms` }}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
             </nav>
             <div className="mt-auto flex flex-col gap-3">
               <button
@@ -144,7 +184,7 @@ export function Navbar() {
                 {lang === "tr" ? "EN" : "TR"}
               </button>
               <a
-                href="#contact"
+                href={isHome ? "#contact" : "/#contact"}
                 onClick={() => setOpen(false)}
                 className="bg-primary py-4 text-center text-base font-bold text-primary-foreground"
               >

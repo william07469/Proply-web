@@ -68,6 +68,11 @@ const SITEMAP_PAGES = [
   { loc: "/#process",  priority: "0.7", changefreq: "monthly" },
   { loc: "/#pricing",  priority: "0.7", changefreq: "monthly" },
   { loc: "/#contact",  priority: "0.9", changefreq: "monthly" },
+  { loc: "/blog",      priority: "0.8", changefreq: "weekly"  },
+  { loc: "/blog/web-sitesi-olmayan-isletme-ne-kaybeder", priority: "0.7", changefreq: "monthly" },
+  { loc: "/blog/web-sitesi-maliyeti-2026",               priority: "0.7", changefreq: "monthly" },
+  { loc: "/blog/kucuk-isletme-icin-seo-rehberi",         priority: "0.7", changefreq: "monthly" },
+  { loc: "/blog/cafe-restoran-web-sitesi-neden-onemli",  priority: "0.7", changefreq: "monthly" },
 ];
 
 function buildSitemap(): string {

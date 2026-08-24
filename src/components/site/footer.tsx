@@ -2,11 +2,11 @@ import { Instagram, Linkedin, Mail, Phone } from "lucide-react";
 import { PHONE_NUMBERS, CONTACT_EMAIL } from "@/lib/site-data";
 import { useLang } from "@/lib/i18n";
 import { getNavLinks } from "@/lib/site-data";
+import { Link } from "@tanstack/react-router";
 
 export function Footer() {
   const { t, lang } = useLang();
   const navLinks = getNavLinks(t);
-
   const serviceLinks = t.footer.serviceLinks;
 
   return (
@@ -15,14 +15,14 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div>
-            <a
-              href="#top"
+            <Link
+              to="/"
               className="flex items-center gap-2 text-base font-black tracking-tight text-foreground"
               style={{ fontFamily: "var(--font-display)" }}
             >
               <span className="flex size-6 items-center justify-center bg-primary text-[10px] font-black text-primary-foreground">P</span>
               PROPLY
-            </a>
+            </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-foreground/40">
               {t.footer.tagline}
             </p>
@@ -44,9 +44,15 @@ export function Footer() {
             <ul className="space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a href={link.href} className="text-sm text-foreground/45 transition-colors hover:text-foreground">
-                    {link.label}
-                  </a>
+                  {link.href.startsWith("#") ? (
+                    <a href={link.href} className="text-sm text-foreground/45 transition-colors hover:text-foreground">
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link to={link.href} className="text-sm text-foreground/45 transition-colors hover:text-foreground">
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -60,7 +66,7 @@ export function Footer() {
             <ul className="space-y-2.5">
               {serviceLinks.map((service) => (
                 <li key={service}>
-                  <a href="#services" className="text-sm text-foreground/45 transition-colors hover:text-foreground">
+                  <a href="/#services" className="text-sm text-foreground/45 transition-colors hover:text-foreground">
                     {service}
                   </a>
                 </li>

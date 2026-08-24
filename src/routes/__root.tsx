@@ -84,11 +84,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       meta: [
         { charSet: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
-        { title: "PROPLY — Modern Web Siteleri" },
+        { title: "Web Site Tasarım & Geliştirme | PROPLY" },
         {
           name: "description",
           content:
-            "PROPLY, işletmeler için modern, hızlı ve mobil uyumlu web siteleri tasarlar ve geliştirir.",
+            "PROPLY, küçük işletmeler için profesyonel web site tasarımı ve geliştirme hizmeti sunar. Hızlı teslim, uygun fiyat, mobil uyumlu.",
         },
         { property: "og:site_name", content: "PROPLY" },
         { property: "og:type", content: "website" },

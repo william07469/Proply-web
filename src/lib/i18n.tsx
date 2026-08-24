@@ -11,15 +11,16 @@ export const translations = {
       works: "Çalışmalar",
       process: "Süreç",
       contact: "İletişim",
+      blog: "Blog",
       cta: "Teklif Al",
     },
     // Hero
     hero: {
-      badge: "Dijitalde daha profesyonel görünün.",
+      badge: "Profesyonel web site tasarımı.",
       h1a: "İşletmeniz için",
-      h1b: "web siteleri.",
-      h1accent: "modern",
-      desc: "Markanızı güçlü gösteren, hızlı, mobil uyumlu ve müşterilerinizin kolayca iletişime geçebileceği web siteleri tasarlıyoruz.",
+      h1b: "web sitesi.",
+      h1accent: "profesyonel",
+      desc: "Küçük işletmeler için modern web site tasarımı ve geliştirme. Hızlı, mobil uyumlu, SEO odaklı — 2–4 haftada teslim.",
       cta1: "Web Sitenizi Oluşturun",
       cta2: "Çalışmalarımızı Gör",
       features: "Modern tasarım • Mobil uyumlu • Hızlı • SEO odaklı",
@@ -225,6 +226,19 @@ export const translations = {
       copyright: "© 2026 PROPLY. Tüm hakları saklıdır.",
       phoneLabels: { turkey: "Türkiye", canada: "Kanada" },
     },
+    // Blog page UI strings
+    blogPage: {
+      kicker: "Blog",
+      title: "Dijital dünyada\nbilgi edinin.",
+      desc: "Web tasarım, SEO ve dijital strateji hakkında küçük işletmelere yönelik pratik yazılar.",
+      readMore: "Devamını Oku",
+      readingTime: "dk okuma",
+      backToBlog: "← Blog'a Dön",
+      backToHome: "Ana Sayfaya Dön",
+      ctaTitle: "Web sitenizi yaptırmaya hazır mısınız?",
+      ctaDesc: "Projenizi anlatın, birlikte oluşturalım.",
+      ctaBtn: "Ücretsiz Teklif Al",
+    },
     // WhatsApp float
     wa: {
       domestic: "Yurt İçi",
@@ -258,6 +272,7 @@ export const translations = {
       works: "Works",
       process: "Process",
       contact: "Contact",
+      blog: "Blog",
       cta: "Get a Quote",
     },
     hero: {
@@ -458,6 +473,19 @@ export const translations = {
       serviceLinks: ["Corporate Website", "Cafe & Restaurant", "Menu Website", "Auto Detailing"],
       copyright: "© 2026 PROPLY. All rights reserved.",
       phoneLabels: { turkey: "Turkey", canada: "Canada" },
+    },
+    // Blog page UI strings
+    blogPage: {
+      kicker: "Blog",
+      title: "Learn about\nthe digital world.",
+      desc: "Practical articles for small businesses on web design, SEO and digital strategy.",
+      readMore: "Read More",
+      readingTime: "min read",
+      backToBlog: "← Back to Blog",
+      backToHome: "Back to Home",
+      ctaTitle: "Ready to get your website built?",
+      ctaDesc: "Tell us about your project and let's build it together.",
+      ctaBtn: "Get a Free Quote",
     },
     wa: {
       domestic: "Domestic",

@@ -19,6 +19,7 @@ export const NAV_HREFS = {
   works: "#works",
   process: "#process",
   contact: "#contact",
+  blog: "/blog",
 } as const;
 
 export function getNavLinks(t: Translations) {
@@ -28,6 +29,7 @@ export function getNavLinks(t: Translations) {
     { label: t.nav.works, href: NAV_HREFS.works },
     { label: t.nav.process, href: NAV_HREFS.process },
     { label: t.nav.contact, href: NAV_HREFS.contact },
+    { label: t.nav.blog, href: NAV_HREFS.blog },
   ];
 }
 

@@ -120,10 +120,6 @@ export function Hero() {
           className="relative mt-16 md:mt-20"
         >
           {/* Orange corner accent */}
-          <div
-            aria-hidden
-            className="absolute -left-3 -top-3 z-10 size-10 bg-primary"
-          />
           <div className="relative overflow-hidden border border-foreground/10 shadow-[8px_8px_0px_0px] shadow-foreground/10">
             <div className="flex items-center gap-2 border-b border-foreground/10 bg-surface px-4 py-2.5">
               <span className="size-2 rounded-full bg-foreground/20" aria-hidden />
