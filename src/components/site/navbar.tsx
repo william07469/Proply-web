@@ -69,8 +69,8 @@ export function Navbar() {
           <img
             src={logoImg}
             alt="PROPLY"
-            height={36}
-            className="h-9 w-auto object-contain"
+            height={44}
+            className="h-11 w-auto object-contain"
           />
         </Link>
 
