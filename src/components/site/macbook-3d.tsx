@@ -58,9 +58,13 @@ function MacBookModel({ scrollRef }: { scrollRef: { progress: React.MutableRefOb
   useFrame((_, delta) => {
     if (!groupRef.current) return;
 
+    // Respect prefers-reduced-motion
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     // Smooth-lerp the progress value — cinematic, never snappy
-    // Lower factor = slower/smoother catch-up
-    const lerpFactor = 1 - Math.pow(0.04, delta); // ~4% per frame @ 60fps
+    const lerpFactor = prefersReduced ? 1 : 1 - Math.pow(0.04, delta);
     scrollRef.progress.current = THREE.MathUtils.lerp(
       scrollRef.progress.current,
       scrollRef.raw.current,
@@ -70,16 +74,17 @@ function MacBookModel({ scrollRef }: { scrollRef: { progress: React.MutableRefOb
     const p = scrollRef.progress.current;
 
     // Y rotation: full 2π over the entire scroll range
-    // Starts at a pleasant -15° intro angle, rotates forward as user scrolls
     const targetY = -0.26 + p * Math.PI * 2;
 
-    // X rotation: subtle wave — slight forward tilt at mid-scroll for depth
-    // sin curve so it gently rocks forward then back
-    const targetX = Math.sin(p * Math.PI) * 0.18 - 0.05;
+    // X rotation: subtle wave for depth
+    const targetX = prefersReduced ? -0.05 : Math.sin(p * Math.PI) * 0.18 - 0.05;
 
-    // Directly assign (lerp already applied to progress, no double-lerp needed)
+    // Subtle floating bob (disabled on reduced-motion)
+    const bob = prefersReduced ? 0 : Math.sin(Date.now() * 0.0008) * 0.04;
+
     groupRef.current.rotation.y = targetY;
     groupRef.current.rotation.x = targetX;
+    groupRef.current.position.y = -0.8 + bob;
   });
 
   return (
@@ -119,11 +124,10 @@ export function MacBook3D() {
 
       <Canvas
         shadows
-        dpr={[1, 1.5]}
+        dpr={[1, typeof window !== "undefined" && window.innerWidth < 768 ? 1 : 1.5]}
         gl={{ antialias: true, alpha: true }}
         onCreated={() => setIsLoaded(true)}
         style={{ background: "transparent" }}
-        // frameloop="always" ensures scroll updates are picked up every frame
         frameloop="always"
       >
         <CameraSetup />
