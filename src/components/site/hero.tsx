@@ -1,11 +1,7 @@
 import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/i18n";
-import { lazy, Suspense } from "react";
-
-const MacBook3D = lazy(() =>
-  import("./macbook-3d").then((m) => ({ default: m.MacBook3D })),
-);
+import heroSite from "@/assets/hero-site.webp";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -167,14 +163,14 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Right — 3D MacBook */}
+          {/* Right — Mockup image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 1.0, ease: EASE }}
-            className="relative hidden h-[520px] lg:block xl:h-[600px]"
+            className="relative hidden lg:block"
           >
-            {/* Glow behind model */}
+            {/* Glow behind image */}
             <div
               aria-hidden
               className="pointer-events-none absolute inset-0 -z-10 blur-3xl"
@@ -184,15 +180,13 @@ export function Hero() {
               }}
             />
 
-            <Suspense
-              fallback={
-                <div className="flex h-full items-center justify-center">
-                  <div className="h-64 w-96 animate-pulse border border-foreground/10 bg-surface" />
-                </div>
-              }
-            >
-              <MacBook3D />
-            </Suspense>
+            <img
+              src={heroSite}
+              alt="PROPLY web sitesi mockup"
+              className="w-full rounded-2xl border border-foreground/10 shadow-2xl shadow-black/50"
+              loading="eager"
+              decoding="async"
+            />
 
             {/* Floating badge */}
             <motion.div
