@@ -1,0 +1,10 @@
+# Binary 3D assets — never convert line endings
+*.gltf  binary
+*.glb   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.webp  binary
+*.ico   binary
+*.woff  binary
+*.woff2 binary

@@ -12,13 +12,13 @@ const scriptSrc = ["'self'", "'unsafe-inline'", isProd ? "" : "'unsafe-eval'"]
   .filter(Boolean)
   .join(" ");
 
-const connectSrc = ["'self'", isProd ? "" : "ws:"].filter(Boolean).join(" ");
+const connectSrc = ["'self'", "data:", isProd ? "" : "ws:"].filter(Boolean).join(" ");
 
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src ${scriptSrc}`,
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-  "font-src 'self' https://fonts.gstatic.com",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com",
+  "font-src 'self' https://fonts.gstatic.com https://api.fontshare.com",
   "img-src 'self' data:",
   `connect-src ${connectSrc}`,
   // Allows the Lovable editor preview while still blocking arbitrary framing.

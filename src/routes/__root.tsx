@@ -15,6 +15,14 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider, useLang } from "../lib/i18n";
 
 function NotFoundComponent() {
+  return (
+    <LanguageProvider>
+      <NotFoundInner />
+    </LanguageProvider>
+  );
+}
+
+function NotFoundInner() {
   const { t } = useLang();
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -40,6 +48,14 @@ function NotFoundComponent() {
 }
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+  return (
+    <LanguageProvider>
+      <ErrorInner error={error} reset={reset} />
+    </LanguageProvider>
+  );
+}
+
+function ErrorInner({ error, reset }: { error: Error; reset: () => void }) {
   const { t } = useLang();
   console.error(error);
   const router = useRouter();
@@ -122,7 +138,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         },
         {
           rel: "stylesheet",
-          href: "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap",
+          href: "https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@700;800;900&display=swap",
+        },
+        {
+          rel: "preconnect",
+          href: "https://api.fontshare.com",
+          crossOrigin: "anonymous",
         },
         {
           rel: "stylesheet",

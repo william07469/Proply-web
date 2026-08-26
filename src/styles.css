@@ -44,7 +44,7 @@
 }
 
 @theme {
-  /* Clash Display for headlines, DM Sans for body */
+  /* Clash Display for headlines (CSP updated), DM Sans for body */
   --font-sans: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-display: "Clash Display", "DM Sans", ui-sans-serif, system-ui, sans-serif;
 
