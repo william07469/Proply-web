@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/navbar";
 import { Hero } from "@/components/site/hero";
 import { Stats } from "@/components/site/stats";
@@ -137,7 +137,7 @@ export const Route = createFileRoute("/")({
               name: "Web sitem ne kadar sürede hazır olur?",
               acceptedAnswer: {
                 "@type": "Answer",
-                text: "Projenin kapsamına göre değişmekle birlikte çoğu web sitesi 2–4 hafta içinde yayına alınır.",
+                text: "Projenin kapsamına göre değişmekle birlikte çoğu web sitesi 1–7 Gün içinde yayına alınır.",
               },
             },
             {

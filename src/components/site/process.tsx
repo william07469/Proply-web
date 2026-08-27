@@ -1,4 +1,4 @@
-import { Reveal } from "./reveal";
+﻿import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 import { useLang } from "@/lib/i18n";
 import { CheckCircle2 } from "lucide-react";
@@ -27,8 +27,8 @@ export function Process() {
                 <div className="mb-3 h-[2px] w-8 bg-primary" />
                 <p className="text-sm font-bold text-foreground">
                   {lang === "tr"
-                    ? "Toplam süre: 2–4 hafta"
-                    : "Total time: 2–4 weeks"}
+                    ? "Toplam süre: 1–7 Gün"
+                    : "Total time: 1–7 days"}
                 </p>
                 <p className="mt-1.5 text-xs leading-relaxed text-foreground/50">
                   {lang === "tr"

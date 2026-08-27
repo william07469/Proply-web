@@ -16,7 +16,7 @@ export function Stats() {
       sub: lang === "tr" ? "Tek şikâyet almadık" : "Zero complaints received",
     },
     {
-      value: "2–4",
+      value: "1–7",
       label: t.stats.delivery,
       sub: lang === "tr" ? "Büyük ajanslar 3–6 ay alır" : "Large agencies take 3–6 months",
     },

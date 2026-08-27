@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
+﻿import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLang } from "@/lib/i18n";
 import heroSite from "@/assets/hero-site.webp";
@@ -148,7 +148,7 @@ export function Hero() {
               className="mt-8 flex flex-wrap gap-3"
             >
               {[
-                { label: lang === "tr" ? "Teslim Süresi" : "Delivery", value: "2–4 Hafta" },
+                { label: lang === "tr" ? "Teslim Süresi" : "Delivery", value: "1–7 Gün" },
                 { label: lang === "tr" ? "Performans" : "Performance", value: "A+ Skor" },
                 { label: lang === "tr" ? "Tamamlanan" : "Completed", value: "12+" },
               ].map((chip) => (

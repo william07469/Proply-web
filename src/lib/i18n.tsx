@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from "react";
+﻿import { createContext, useContext, useState, type ReactNode } from "react";
 
 export type Lang = "tr" | "en";
 
@@ -20,7 +20,7 @@ export const translations = {
       h1a: "İşletmeniz için",
       h1b: "web sitesi.",
       h1accent: "profesyonel",
-      desc: "Küçük işletmeler için modern web site tasarımı ve geliştirme. Hızlı, mobil uyumlu, SEO odaklı — 2–4 haftada teslim.",
+      desc: "Küçük işletmeler için modern web site tasarımı ve geliştirme. Hızlı, mobil uyumlu, SEO odaklı — 1–7 günde teslim.",
       cta1: "Web Sitenizi Oluşturun",
       cta2: "Çalışmalarımızı Gör",
       features: "Modern tasarım • Mobil uyumlu • Hızlı • SEO odaklı",
@@ -31,7 +31,7 @@ export const translations = {
     stats: {
       projects: "Teslim Edilen Proje",
       satisfaction: "Müşteri Memnuniyeti",
-      delivery: "Hafta İçinde Teslim",
+      delivery: "Günde Teslim",
       ariaLabel: "PROPLY rakamları",
     },
     // Trust Bar
@@ -181,7 +181,7 @@ export const translations = {
       items: [
         {
           q: "Web sitem ne kadar sürede hazır olur?",
-          a: "Projenin kapsamına göre değişmekle birlikte çoğu web sitesi 2–4 hafta içinde yayına alınır.",
+          a: "Projenin kapsamına göre değişmekle birlikte çoğu web sitesi 1–7 Gün içinde yayına alınır.",
         },
         {
           q: "Mevcut web sitemi yenileyebilir misiniz?",
@@ -317,7 +317,7 @@ export const translations = {
     stats: {
       projects: "Projects Delivered",
       satisfaction: "Client Satisfaction",
-      delivery: "Weeks to Deliver",
+      delivery: "Days to Deliver",
       ariaLabel: "PROPLY numbers",
     },
     trustBar: {
@@ -459,7 +459,7 @@ export const translations = {
       items: [
         {
           q: "How long does it take to complete my website?",
-          a: "Most websites are launched within 2–4 weeks, depending on the scope of the project.",
+          a: "Most websites are launched within 1–7 days, depending on the scope of the project.",
         },
         {
           q: "Can you redesign my existing website?",
@@ -614,7 +614,7 @@ export const comparisonTranslations = {
     rows: [
       {
         label: "Teslim Süresi",
-        values: ["2–4 hafta", "4–10 hafta", "3–6 ay"],
+        values: ["1–7 Gün", "4–10 hafta", "3–6 ay"],
         highlight: 0,
       },
       {
@@ -662,7 +662,7 @@ export const comparisonTranslations = {
     rows: [
       {
         label: "Delivery Time",
-        values: ["2–4 weeks", "4–10 weeks", "3–6 months"],
+        values: ["1–7 days", "4–10 weeks", "3–6 months"],
         highlight: 0,
       },
       {

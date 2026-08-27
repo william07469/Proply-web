@@ -1,4 +1,4 @@
-export interface BlogPost {
+﻿export interface BlogPost {
   slug: string;
   title: string;
   titleEn: string;
@@ -47,7 +47,7 @@ export const blogPosts: BlogPost[] = [
 <p>Araştırmalar, tüketicilerin <strong>%75'inin bir işletmenin güvenilirliğini web sitesine bakarak değerlendirdiğini</strong> gösteriyor. Web sitesi olmayan işletmeler potansiyel müşterilere profesyonellik açısından zayıf mesaj gönderiyor.</p>
 
 <h2>Sonuç</h2>
-<p>Web sitesi artık bir lüks değil, temel bir iş aracı. PROPLY olarak 2–4 haftada, uygun maliyetle işletmenizi dijitale taşıyoruz.</p>
+<p>Web sitesi artık bir lüks değil, temel bir iş aracı. PROPLY olarak 1–7 Günda, uygun maliyetle işletmenizi dijitale taşıyoruz.</p>
     `.trim(),
     contentEn: `
 <h2>Customers' First Stop: Google</h2>
@@ -69,7 +69,7 @@ export const blogPosts: BlogPost[] = [
 <p>Research shows that <strong>75% of consumers judge a business's credibility by its website.</strong> Businesses without a website send a weak professionalism signal to potential customers.</p>
 
 <h2>Conclusion</h2>
-<p>A website is no longer a luxury — it's a basic business tool. At PROPLY, we take your business digital in 2–4 weeks at an affordable cost.</p>
+<p>A website is no longer a luxury — it's a basic business tool. At PROPLY, we take your business digital in 1–7 days at an affordable cost.</p>
     `.trim(),
   },
   {
@@ -96,7 +96,7 @@ export const blogPosts: BlogPost[] = [
 <p>₺40.000 ve üzeri. Kurumsal ajanslar yüksek kaliteli iş çıkarabilir ama süreç uzun (3–6 ay), bürokratik ve pahalı. Küçük işletmeler için genellikle orantısız bir yatırım.</p>
 
 <h3>PROPLY Gibi Özel Stüdyolar</h3>
-<p>₺7.500 – ₺25.000. En iyi denge noktası: kişisel iletişim, hızlı teslim (2–4 hafta), profesyonel tasarım ve rekabetçi fiyat.</p>
+<p>₺7.500 – ₺25.000. En iyi denge noktası: kişisel iletişim, hızlı teslim (1–7 Gün), profesyonel tasarım ve rekabetçi fiyat.</p>
 
 <h2>Fiyatı Etkileyen Faktörler</h2>
 <ul>
@@ -120,7 +120,7 @@ export const blogPosts: BlogPost[] = [
 <p>₺40,000 and up. Corporate agencies can produce high-quality work, but the process is long (3–6 months), bureaucratic and expensive. Usually a disproportionate investment for small businesses.</p>
 
 <h3>Boutique Studios like PROPLY</h3>
-<p>₺7,500 – ₺25,000. The best balance: personal communication, fast delivery (2–4 weeks), professional design and competitive pricing.</p>
+<p>₺7,500 – ₺25,000. The best balance: personal communication, fast delivery (1–7 days), professional design and competitive pricing.</p>
 
 <h2>Factors That Affect the Price</h2>
 <ul>

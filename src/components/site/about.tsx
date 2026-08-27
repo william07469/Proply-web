@@ -1,4 +1,4 @@
-import { Reveal } from "./reveal";
+﻿import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 import { useLang } from "@/lib/i18n";
 import { CheckCircle2 } from "lucide-react";
@@ -68,7 +68,7 @@ export function About() {
             <div className="mt-4 flex items-center gap-2.5 border border-primary/30 bg-primary/5 p-4">
               <CheckCircle2 className="size-4 shrink-0 text-primary" />
               <p className="text-sm font-semibold text-foreground">
-                {lang === "en" ? "Delivered in 2–4 weeks, every time." : "Her projede 2–4 haftada teslim."}
+                {lang === "en" ? "Delivered in 1–7 days, every time." : "Her projede 1–7 günde teslim."}
               </p>
             </div>
 

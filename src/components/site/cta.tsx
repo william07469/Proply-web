@@ -1,4 +1,4 @@
-import { ArrowRight, MessageCircle, Zap, Shield, Clock } from "lucide-react";
+﻿import { ArrowRight, MessageCircle, Zap, Shield, Clock } from "lucide-react";
 import { waLink } from "@/lib/site-data";
 import { Reveal } from "./reveal";
 import { useLang } from "@/lib/i18n";
@@ -10,8 +10,8 @@ export function Cta() {
   const guarantees = [
     {
       icon: Clock,
-      tr: "2–4 haftada teslim",
-      en: "Delivered in 2–4 weeks",
+      tr: "1–7 günde teslim",
+      en: "Delivered in 1–7 days",
     },
     {
       icon: Shield,
