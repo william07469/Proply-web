@@ -9,7 +9,7 @@ import { useLang } from "@/lib/i18n";
 
 const PROJECT_META = [
   { name: "Otantik Turkish Restaurant", category: "Restaurant Website", url: "https://otantik-turkish.lovable.app", image: workOtantik, metric: { tr: "Mobil trafik artışı", en: "Mobile traffic growth", value: "+60%" } },
-  { name: "Olina Coffee",               category: "Cafe Website",        url: "https://olina-coffee.lovable.app",  image: workOlina,   metric: { tr: "Teslim süresi",       en: "Delivery time",     value: "12 gün" } },
+  { name: "Olina Coffee",               category: "Cafe Website",        url: "https://olina-coffee.lovable.app",  image: workOlina,   metric: { tr: "Teslim süresi",       en: "Delivery time",     value: "3 gün" } },
   { name: "WV Detailing",               category: "Auto Detailing",      url: "https://wv-detailling.lovable.app/",image: workWv,      metric: { tr: "Google sıralama",    en: "Google ranking",    value: "#1" } },
   { name: "Kata Coffee",                category: "Cafe Website",        url: "https://kata-coffee.base44.app",   image: workKata,    metric: { tr: "Müşteri memnuniyeti",en: "Client satisfaction",value: "100%" } },
 ];

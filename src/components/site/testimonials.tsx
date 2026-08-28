@@ -17,8 +17,8 @@ const TESTIMONIALS = [
     nameEn: "Selin Kaya",
     roleTr: "İşletme Sahibi — Olina Coffee",
     roleEn: "Business Owner — Olina Coffee",
-    textTr: "12 günde teslim dediler, 11 günde hazır oldu. Beklentilerimin çok üzerinde bir tasarım çıktı. Müşterilerim siteyi görünce 'siz de büyük bir zincir misiniz?' diye soruyor.",
-    textEn: "They said 12 days, it was ready in 11. The design exceeded my expectations by far. Customers see the site and ask 'are you a big chain too?'",
+    textTr: "3 günde teslim dediler, 3 günde hazır oldu. Beklentilerimin çok üzerinde bir tasarım çıktı. Müşterilerim siteyi görünce 'siz de büyük bir zincir misiniz?' diye soruyor.",
+    textEn: "They said 3 days, it was ready in 3. The design exceeded my expectations by far. Customers see the site and ask 'are you a big chain too?'",
     initial: "S",
   },
   {

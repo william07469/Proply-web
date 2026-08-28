@@ -35,7 +35,7 @@ export function Services() {
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeading kicker={t.services.kicker} title={t.services.title} />
 
-        <div className="mt-16 grid gap-0 border border-foreground/10 lg:grid-cols-[1.6fr_1fr]">
+        <div className="mt-16 grid gap-0 border border-foreground/10 rounded-2xl overflow-hidden lg:grid-cols-[1.6fr_1fr]">
           {/* Featured — with background image */}
           <Reveal>
             <a
@@ -51,7 +51,7 @@ export function Services() {
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/60 to-background/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent" />
 
               {/* Content */}
               <div className="relative p-10">
@@ -98,14 +98,14 @@ export function Services() {
                   className="group flex items-start gap-0 transition-colors hover:bg-surface overflow-hidden"
                 >
                   {/* Thumbnail */}
-                  <div className="relative h-full w-24 shrink-0 overflow-hidden">
+                  <div className="relative h-full w-24 shrink-0 overflow-hidden rounded-lg m-3 mr-0">
                     <img
                       src={service.image}
                       alt={service.title}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      style={{ minHeight: "100px" }}
+                      style={{ minHeight: "96px" }}
                     />
-                    <div className="absolute inset-0 bg-background/30 transition-colors group-hover:bg-background/10" />
+                    <div className="absolute inset-0 bg-background/30 transition-colors group-hover:bg-background/10 rounded-lg" />
                   </div>
 
                   {/* Text */}
