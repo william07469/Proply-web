@@ -132,7 +132,7 @@ export const translations = {
         },
         {
           name: "BUSINESS",
-          price: "₺24.000",
+          price: "₺25.000",
           suffix: "'den başlayan",
           desc: "Profesyonel tasarım, mobil uyumluluk, SEO ve işletmeye özel geliştirmeler içeren standart paket.",
           features: [
@@ -412,7 +412,7 @@ export const translations = {
         },
         {
           name: "BUSINESS",
-          price: "₺24,000",
+          price: "₺25,000",
           suffix: " starting from",
           desc: "Professional design, mobile compatibility, SEO and business-specific development.",
           features: [
