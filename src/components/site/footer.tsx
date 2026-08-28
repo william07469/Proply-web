@@ -105,7 +105,25 @@ export function Footer() {
         </div>
 
         <div className="mt-14 border-t border-foreground/15 pt-7">
-          <p className="text-xs font-medium text-foreground/60">{t.footer.copyright}</p>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-xs font-medium text-foreground/50">{t.footer.copyright}</p>
+            <p className="text-xs text-foreground/40">
+              {lang === "tr"
+                ? "Profesyonel web siteleri — hızlı, mobil uyumlu, SEO odaklı."
+                : "Professional websites — fast, mobile-friendly, SEO-focused."}
+            </p>
+            <div className="flex items-center gap-4">
+              <a href="/#services" className="text-xs text-foreground/40 transition-colors hover:text-primary">
+                {lang === "tr" ? "Hizmetler" : "Services"}
+              </a>
+              <a href="/#contact" className="text-xs text-foreground/40 transition-colors hover:text-primary">
+                {lang === "tr" ? "İletişim" : "Contact"}
+              </a>
+              <a href="/blog" className="text-xs text-foreground/40 transition-colors hover:text-primary">
+                Blog
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
