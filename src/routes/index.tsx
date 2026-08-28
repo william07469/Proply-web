@@ -1,4 +1,4 @@
-﻿import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/navbar";
 import { Hero } from "@/components/site/hero";
 import { Stats } from "@/components/site/stats";
@@ -15,6 +15,7 @@ import { Cta } from "@/components/site/cta";
 import { Contact } from "@/components/site/contact";
 import { Footer } from "@/components/site/footer";
 import { WhatsAppFloat } from "@/components/site/whatsapp-float";
+import { Laptop3DScene } from "@/components/site/laptop-3d-scene";
 
 const TITLE = "Web Site Tasarım & Geliştirme | PROPLY — Profesyonel Web Siteleri";
 const DESCRIPTION =
@@ -125,7 +126,7 @@ export const Route = createFileRoute("/")({
           },
         }),
       },
-      // FAQPage schema — FAQ içeriğini Google'a doğrudan besler
+      // FAQPage schema
       {
         type: "application/ld+json",
         children: JSON.stringify({
@@ -167,7 +168,7 @@ export const Route = createFileRoute("/")({
           ],
         }),
       },
-      // WebSite schema — sitelink searchbox için
+      // WebSite schema
       {
         type: "application/ld+json",
         children: JSON.stringify({
@@ -186,7 +187,10 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="relative min-h-screen bg-background text-foreground overflow-x-hidden">
+      {/* 3D Interactive Studio Canvas */}
+      <Laptop3DScene />
+
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-primary focus:px-5 focus:py-2.5 focus:text-sm focus:font-bold focus:text-primary-foreground"
@@ -194,7 +198,7 @@ function Index() {
         İçeriğe geç
       </a>
       <Navbar />
-      <main id="main">
+      <main id="main" className="relative z-10">
         <Hero />
         <Stats />
         <TrustBar />
