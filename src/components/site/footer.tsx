@@ -27,7 +27,7 @@ export function Footer() {
               {t.footer.tagline}
             </p>
             <div className="mt-6 flex gap-2.5">
-              <a href="#top" aria-label="Instagram" className="flex size-9 items-center justify-center rounded-full border border-foreground/20 text-foreground/70 transition-colors hover:border-primary hover:text-primary hover:bg-foreground/5">
+              <a href="https://instagram.com/proplyweb" target="_blank" rel="noreferrer" aria-label="Instagram" className="flex size-9 items-center justify-center rounded-full border border-foreground/20 text-foreground/70 transition-colors hover:border-primary hover:text-primary hover:bg-foreground/5">
                 <Instagram className="size-4" />
               </a>
               <a href="#top" aria-label="LinkedIn" className="flex size-9 items-center justify-center rounded-full border border-foreground/20 text-foreground/70 transition-colors hover:border-primary hover:text-primary hover:bg-foreground/5">
