@@ -79,40 +79,9 @@
 :root {
   --radius: 0.25rem;
 
-  /* ── LIGHT THEME (default) ── */
-  --background:    oklch(0.97 0.004 80);   /* warm cream */
-  --foreground:    oklch(0.15 0.008 264);  /* near-black */
-  --card:          oklch(1 0 0);           /* white */
-  --card-foreground: oklch(0.15 0.008 264);
-  --popover:       oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.008 264);
-
-  --primary:          oklch(0.72 0.20 45);
-  --primary-foreground: oklch(0.98 0.004 80);
-
-  --secondary:        oklch(0.94 0.006 80);
-  --secondary-foreground: oklch(0.15 0.008 264);
-  --muted:            oklch(0.94 0.006 80);
-  --muted-foreground: oklch(0.45 0.010 260);
-  --accent:           oklch(0.72 0.20 45);
-  --accent-foreground: oklch(0.98 0.004 80);
-  --destructive:      oklch(0.58 0.22 25);
-  --destructive-foreground: oklch(0.98 0.004 80);
-
-  --border: oklch(0 0 0 / 10%);
-  --input:  oklch(0 0 0 / 12%);
-  --ring:   oklch(0.72 0.20 45);
-
-  --surface:   oklch(0.96 0.005 80);
-  --surface-2: oklch(0.93 0.006 80);
-
-  --ink: oklch(0.15 0.008 264);
-}
-
-.dark {
-  /* ── DARK THEME ── */
-  --background:    oklch(0.11 0.008 264);
-  --foreground:    oklch(0.96 0.006 80);
+  /* ── DARK THEME (default) ── */
+  --background:    oklch(0.11 0.008 264);   /* deep charcoal */
+  --foreground:    oklch(0.96 0.006 80);    /* warm near-white */
   --card:          oklch(0.15 0.008 264);
   --card-foreground: oklch(0.96 0.006 80);
   --popover:       oklch(0.15 0.008 264);
