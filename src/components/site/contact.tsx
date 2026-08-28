@@ -6,7 +6,7 @@ import { SectionHeading } from "./section-heading";
 import { useLang } from "@/lib/i18n";
 
 const INPUT_CLASSES =
-  "w-full border border-foreground/10 bg-surface px-4 py-3 text-sm text-foreground placeholder:text-foreground/30 transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30";
+  "w-full border border-foreground/15 bg-surface px-4 py-3 text-sm text-foreground placeholder:text-foreground/50 transition-colors focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/30";
 
 export function Contact() {
   const { t, lang } = useLang();
@@ -36,16 +36,16 @@ export function Contact() {
         <div>
           <SectionHeading kicker={t.contact.kicker} title={t.contact.title} description={t.contact.desc} />
           <Reveal delay={120}>
-            <div className="mt-10 border border-foreground/10 bg-surface p-6">
+            <div className="mt-10 border border-foreground/15 bg-surface p-6">
               <div className="mb-4 flex size-10 items-center justify-center bg-primary text-primary-foreground">
                 <MessageCircle className="size-5" />
               </div>
               <p className="font-bold tracking-tight text-foreground">{t.contact.waTitle}</p>
-              <p className="mt-1.5 text-sm text-foreground/55">{t.contact.waDesc}</p>
+              <p className="mt-1.5 text-sm text-foreground/75">{t.contact.waDesc}</p>
               <div className="mt-4 flex flex-col gap-1.5">
                 {PHONE_NUMBERS.map((p) => (
                   <a key={p.href} href={p.href} className="text-sm font-semibold text-foreground transition-colors hover:text-primary">
-                    <span className="font-normal text-foreground/45">{lang === "en" ? p.labelEn : p.label}: </span>
+                    <span className="font-normal text-foreground/70">{lang === "en" ? p.labelEn : p.label}: </span>
                     {p.number}
                   </a>
                 ))}
@@ -65,7 +65,7 @@ export function Contact() {
 
         {/* Right form */}
         <Reveal delay={100}>
-          <form onSubmit={handleSubmit} className="border border-foreground/10 bg-surface p-8">
+          <form onSubmit={handleSubmit} className="border border-foreground/15 bg-surface p-8">
             {/* Orange top line */}
             <div className="mb-8 h-[3px] w-12 bg-primary" />
 
@@ -77,7 +77,7 @@ export function Contact() {
                 { id: "phone",    label: t.contact.fields.phone,     placeholder: t.contact.fields.phonePlaceholder,    type: "tel",   autoComplete: "tel" },
               ].map((field) => (
                 <div key={field.id}>
-                  <label htmlFor={field.id} className="mb-2 block text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/45">
+                  <label htmlFor={field.id} className="mb-2 block text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/75">
                     {field.label}
                   </label>
                   <input id={field.id} name={field.id} type={field.type} required autoComplete={field.autoComplete} placeholder={field.placeholder} className={INPUT_CLASSES} />
@@ -91,7 +91,7 @@ export function Contact() {
             </div>
 
             <div className="mt-5">
-              <label htmlFor="details" className="mb-2 block text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/45">
+              <label htmlFor="details" className="mb-2 block text-[11px] font-bold uppercase tracking-[0.2em] text-foreground/75">
                 {t.contact.fields.details}
               </label>
               <textarea id="details" name="details" rows={4} required placeholder={t.contact.fields.detailsPlaceholder} className={`${INPUT_CLASSES} resize-none`} />
