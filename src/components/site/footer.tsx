@@ -10,7 +10,7 @@ export function Footer() {
   const serviceLinks = t.footer.serviceLinks;
 
   return (
-    <footer className="border-t border-foreground/15 bg-card text-foreground">
+    <footer className="border-t border-foreground/10 bg-surface text-foreground">
       <div className="mx-auto max-w-7xl px-5 py-16 md:px-10">
         <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
           {/* Brand */}
