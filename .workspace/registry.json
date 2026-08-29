@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "created": "2026-08-29T18:41:54.566Z",
+  "components": [
+    {
+      "name": "Reveal",
+      "file": "src/components/site/reveal.tsx",
+      "description": "Scroll animasyonu — elemanları görünür olunca fade + slide ile getirir",
+      "deps": ["scroll-craft"],
+      "props": ["children", "delay?", "className?"],
+      "tags": ["animation", "scroll", "visibility"]
+    },
+    {
+      "name": "Stats",
+      "file": "src/components/site/stats.tsx",
+      "description": "Sayacı efektli istatistik bölümü — 12+, %100, 7 sayaç animasyonu",
+      "deps": ["scroll-craft"],
+      "props": [],
+      "tags": ["counter", "statistics", "numbers"]
+    },
+    {
+      "name": "WhatsAppFloat",
+      "file": "src/components/site/whatsapp-float.tsx",
+      "description": "Sabit WhatsApp butonu — iletişim bölümünde otomatik gizlenir",
+      "deps": ["lucide-react"],
+      "props": [],
+      "tags": ["floating", "whatsapp", "contact"]
+    },
+    {
+      "name": "SectionHeading",
+      "file": "src/components/site/section-heading.tsx",
+      "description": "Bölüm başlığı — kicker, title, description ile düzenli başlık",
+      "deps": [],
+      "props": ["kicker", "title", "description?"],
+      "tags": ["heading", "layout", "typography"]
+    },
+    {
+      "name": "TrustBar",
+      "file": "src/components/site/trust-bar.tsx",
+      "description": "Sonsuz kayan güven göstergeleri marquee",
+      "deps": [],
+      "props": [],
+      "tags": ["marquee", "trust", "social-proof"]
+    }
+  ],
+  "themes": [
+    {
+      "name": "Proply Light",
+      "file": "src/styles.css",
+      "description": "Krem arka plan, koyu yazı, turuncu accent — editorial brutalism",
+      "colors": {
+        "background": "oklch(0.97 0.004 80)",
+        "foreground": "oklch(0.15 0.008 264)",
+        "primary": "oklch(0.72 0.20 45)"
+      },
+      "tags": ["light", "cream", "brutalist"]
+    },
+    {
+      "name": "Proply Dark",
+      "file": "src/styles.css",
+      "description": "Koyu charcoal arka plan, açık yazı, turuncu accent",
+      "colors": {
+        "background": "oklch(0.11 0.008 264)",
+        "foreground": "oklch(0.96 0.006 80)",
+        "primary": "oklch(0.72 0.20 45)"
+      },
+      "tags": ["dark", "charcoal", "brutalist"]
+    }
+  ],
+  "templates": [
+    {
+      "name": "Landing Page",
+      "file": "src/routes/index.tsx",
+      "description": "Tam landing page — hero, services, portfolio, pricing, contact, footer",
+      "sections": ["Hero", "Stats", "TrustBar", "Services", "WhyProply", "Portfolio", "Testimonials", "Process", "Pricing", "About", "Faq", "Cta", "Contact", "Footer"],
+      "tags": ["landing", "marketing", "one-page"]
+    },
+    {
+      "name": "Agency Minimal",
+      "description": "Minimal ajans sitesi — sadece hero + services + contact",
+      "sections": ["Hero", "Services", "Contact", "Footer"],
+      "tags": ["minimal", "agency", "simple"]
+    },
+    {
+      "name": "Portfolio",
+      "description": "Portfolio odaklı site — hero + works + about + contact",
+      "sections": ["Hero", "Portfolio", "About", "Contact", "Footer"],
+      "tags": ["portfolio", "creative", "showcase"]
+    }
+  ]
+}

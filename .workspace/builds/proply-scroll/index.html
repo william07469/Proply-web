@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PROPLY · Premium Web Design</title>
+<meta name="description" content="PROPLY, işletmeler için premium web sitesi tasarımı ve geliştirme hizmeti sunar.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23f97316'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="scrollcraft.css">
+<style>
+  :root {
+    --sc-canvas:     #0a0806;
+    --sc-surface:    #141110;
+    --sc-ink:        #f5f0e8;
+    --sc-ink-soft:   #a29888;
+    --sc-accent:     #f97316;
+    --sc-accent-ink: #0a0806;
+    --sc-font-display: "Syne", "DM Sans", system-ui, sans-serif;
+    --sc-font-text:    "DM Sans", system-ui, sans-serif;
+  }
+
+  /* ── custom classes ── */
+  .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--sc-font-display);
+    font-weight: 900;
+    font-size: var(--sc-t-lg);
+    letter-spacing: -0.03em;
+    color: var(--sc-ink);
+    text-decoration: none;
+  }
+  .logo-mark__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    background: var(--sc-accent);
+  }
+
+  .laptop-frame {
+    position: relative;
+    width: min(85vw, 900px);
+    margin: 0 auto;
+  }
+  .laptop-screen {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #111;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    border: 2px solid #222;
+  }
+  .laptop-base {
+    width: 110%;
+    height: 12px;
+    margin-left: -5%;
+    background: linear-gradient(to bottom, #2a2a2a, #1a1a1a);
+    border-radius: 0 0 6px 6px;
+  }
+  .laptop-base::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 4px;
+    margin: 0 auto;
+    background: #333;
+    border-radius: 0 0 4px 4px;
+  }
+
+  .screen-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    color: #111;
+  }
+  .screen-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .screen-nav__logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #111;
+  }
+  .screen-nav__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    background: #f97316;
+  }
+  .screen-nav__links {
+    display: flex;
+    gap: 16px;
+    color: #666;
+    font-size: 12px;
+  }
+  .screen-hero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+  .screen-hero h2 {
+    font-family: var(--sc-font-display);
+    font-size: clamp(18px, 3vw, 32px);
+    font-weight: 900;
+    color: #111;
+    margin: 0 0 8px;
+    line-height: 1.1;
+  }
+  .screen-hero h2 span { color: #f97316; }
+  .screen-hero p {
+    font-size: clamp(11px, 1.5vw, 14px);
+    color: #666;
+    margin: 0 0 16px;
+    max-width: 400px;
+  }
+  .screen-hero__cta {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #f97316;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  /* Screen states — controlled by scroll */
+  .screen-state {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: #fafafa;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .screen-state.active { opacity: 1; }
+
+  .screen-services {
+    padding: 24px;
+  }
+  .screen-services h3 {
+    font-family: var(--sc-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 16px;
+    color: #111;
+  }
+  .screen-services__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .screen-services__card {
+    padding: 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    background: #fff;
+  }
+  .screen-services__card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: #111;
+  }
+  .screen-services__card p {
+    font-size: 11px;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .screen-portfolio {
+    padding: 24px;
+  }
+  .screen-portfolio h3 {
+    font-family: var(--sc-font-display);
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 16px;
+    color: #111;
+  }
+  .screen-portfolio__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .screen-portfolio__item {
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #e5e5e5, #ccc);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+  .screen-portfolio__item::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+
+  .screen-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    text-align: center;
+  }
+  .screen-contact h3 {
+    font-family: var(--sc-font-display);
+    font-size: 20px;
+    font-weight: 800;
+    margin: 0 0 8px;
+    color: #111;
+  }
+  .screen-contact p {
+    font-size: 12px;
+    color: #666;
+    margin: 0 0 16px;
+  }
+  .screen-contact__form {
+    display: flex;
+    gap: 8px;
+  }
+  .screen-contact__input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    width: 180px;
+  }
+  .screen-contact__btn {
+    padding: 8px 16px;
+    background: #f97316;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  /* Laptop glow */
+  .laptop-glow {
+    position: absolute;
+    inset: -40%;
+    background: radial-gradient(ellipse at 50% 60%, rgba(249, 115, 22, 0.12), transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Particle canvas */
+  .particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Section spacing */
+  .section--context {
+    padding: clamp(4rem, 12vh, 10rem) clamp(1.5rem, 5vw, 5rem);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .section--context h2 {
+    font-family: var(--sc-font-display);
+    font-size: var(--sc-t-3xl);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 0 0 var(--sc-5);
+  }
+  .section--context h2 span { color: var(--sc-accent); }
+  .section--context p {
+    font-size: var(--sc-t-lg);
+    color: var(--sc-ink-soft);
+    line-height: 1.6;
+    margin: 0 0 var(--sc-4);
+    max-width: 55ch;
+  }
+
+  .close-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: var(--sc-accent);
+    color: var(--sc-accent-ink);
+    font-family: var(--sc-font-display);
+    font-weight: 800;
+    font-size: var(--sc-t-lg);
+    text-decoration: none;
+    transition: transform 0.2s var(--sc-ease-out), box-shadow 0.2s var(--sc-ease-out);
+  }
+  .close-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(249, 115, 22, 0.3);
+  }
+
+  .tagline {
+    font-family: var(--sc-font-mono);
+    font-size: var(--sc-t-xs);
+    letter-spacing: var(--sc-track-wide);
+    text-transform: uppercase;
+    color: var(--sc-ink-soft);
+    margin-bottom: var(--sc-4);
+  }
+</style>
+</head>
+<body>
+
+<span data-sc-progress></span>
+<div class="sc-grain" aria-hidden="true"></div>
+<canvas class="particles" id="particles"></canvas>
+
+<header style="position:fixed;top:0;left:0;right:0;z-index:60;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;">
+  <a href="#" class="logo-mark">
+    <span class="logo-mark__dot"></span>
+    PROPLY
+  </a>
+  <a href="#close" style="font-size:0.8rem;font-weight:600;color:var(--sc-ink-soft);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;">İletişim</a>
+</header>
+
+<main id="top">
+
+  <!-- 1 · DARKNESS: scrub (particles) -->
+  <section data-sc-act="scrub" data-sc-span="2.2" data-sc-dwell="0.3" data-sc-drift="#0a0806">
+    <div data-sc-stage>
+      <div class="sc-scrim sc-scrim--band" aria-hidden="true"></div>
+      <div class="sc-copy sc-copy--center" data-sc-cue="0.15 0.85">
+        <p class="tagline" data-sc-kinetic="lines">PROPLY</p>
+        <h1 class="sc-display sc-display--xl" data-sc-kinetic="lines">Web siteniz<br>markanız olsun.</h1>
+        <p class="sc-lede" data-sc-cue="0.35 0.85" style="margin-top:1.5rem;">Premium dijital deneyimler tasarlıyoruz.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · APPROACH: scrub (laptop drifts in) -->
+  <section data-sc-act="scrub" data-sc-span="2.8" data-sc-dwell="0.25" data-sc-drift="#0c0a08">
+    <div data-sc-stage>
+      <div class="laptop-glow" aria-hidden="true"></div>
+      <div class="laptop-frame" data-sc-parallax="-0.15" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.85);opacity:0;" data-sc-cue="0.1 0.9">
+        <div class="laptop-screen">
+          <div class="screen-content" id="screen-content">
+            <!-- State 0: Hero -->
+            <div class="screen-state active" id="screen-hero">
+              <div class="screen-nav">
+                <div class="screen-nav__logo"><span class="screen-nav__dot"></span> PROPLY</div>
+                <div class="screen-nav__links"><span>Ana Sayfa</span><span>Hizmetler</span><span>İletişim</span></div>
+              </div>
+              <div class="screen-hero">
+                <h2>İşletmeniz İçin<br><span>Modern</span> Web Sitesi</h2>
+                <p>Hızlı, mobil uyumlu, SEO dostu web siteleri ile dijital dünyada fark yaratın.</p>
+                <a href="#" class="screen-hero__cta">Teklif Al →</a>
+              </div>
+            </div>
+            <!-- State 1: Services -->
+            <div class="screen-state" id="screen-services">
+              <div class="screen-nav">
+                <div class="screen-nav__logo"><span class="screen-nav__dot"></span> PROPLY</div>
+                <div class="screen-nav__links"><span>Hizmetler</span></div>
+              </div>
+              <div class="screen-services">
+                <h3>Hizmetlerimiz</h3>
+                <div class="screen-services__grid">
+                  <div class="screen-services__card"><h4>Kurumsal Web Sitesi</h4><p>Profesyonel kurumsal kimlik.</p></div>
+                  <div class="screen-services__card"><h4>Cafe & Restoran</h4><p>Dijital menü ve tanıtım.</p></div>
+                  <div class="screen-services__card"><h4>Oto Detailing</h4><p>Randevu ve tanıtım sitesi.</p></div>
+                  <div class="screen-services__card"><h4>E-Ticaret</h4><p>Online satış platformu.</p></div>
+                </div>
+              </div>
+            </div>
+            <!-- State 2: Portfolio -->
+            <div class="screen-state" id="screen-portfolio">
+              <div class="screen-nav">
+                <div class="screen-nav__logo"><span class="screen-nav__dot"></span> PROPLY</div>
+                <div class="screen-nav__links"><span>Çalışmalar</span></div>
+              </div>
+              <div class="screen-portfolio">
+                <h3>Çalışmalarımız</h3>
+                <div class="screen-portfolio__grid">
+                  <div class="screen-portfolio__item" data-label="Otantik" style="background:linear-gradient(135deg,#f97316,#ea580c);"></div>
+                  <div class="screen-portfolio__item" data-label="Olena" style="background:linear-gradient(135deg,#059669,#047857);"></div>
+                  <div class="screen-portfolio__item" data-label="WV" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);"></div>
+                </div>
+              </div>
+            </div>
+            <!-- State 3: Contact -->
+            <div class="screen-state" id="screen-contact">
+              <div class="screen-nav">
+                <div class="screen-nav__logo"><span class="screen-nav__dot"></span> PROPLY</div>
+                <div class="screen-nav__links"><span>İletişim</span></div>
+              </div>
+              <div class="screen-contact">
+                <h3>İletişime Geçin</h3>
+                <p>Projeniz için fiyat teklifi alın.</p>
+                <div class="screen-contact__form">
+                  <input class="screen-contact__input" placeholder="E-posta" readonly>
+                  <button class="screen-contact__btn">Gönder</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="laptop-base"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · REVEAL: pin + kinetic (laptop pins, screen syncs) -->
+  <section data-sc-act="pin" data-sc-span="5" data-sc-drift="#0e0c0a">
+    <div data-sc-stage>
+      <div class="laptop-frame" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">
+        <div class="laptop-screen">
+          <div class="screen-content" id="screen-sync">
+            <div class="screen-state active" id="sync-hero">
+              <div class="screen-nav">
+                <div class="screen-nav__logo"><span class="screen-nav__dot"></span> PROPLY</div>
+                <div class="screen-nav__links"><span>Ana Sayfa</span><span>Hizmetler</span><span>Çalışmalar</span><span>İletişim</span></div>
+              </div>
+              <div class="screen-hero">
+                <h2>İşletmeniz İçin<br><span>Modern</span> Web Sitesi</h2>
+                <p>Hızlı, mobil uyumlu, SEO dostu web siteleri ile dijital dünyada fark yaratın.</p>
+                <a href="#" class="screen-hero__cta">Teklif Al →</a>
+              </div>
+            </div>
+            <div class="screen-state" id="sync-services">
+              <div class="screen-nav">
+                <div class="screen-nav__logo"><span class="screen-nav__dot"></span> PROPLY</div>
+                <div class="screen-nav__links"><span>Hizmetler</span></div>
+              </div>
+              <div class="screen-services">
+                <h3>Hizmetlerimiz</h3>
+                <div class="screen-services__grid">
+                  <div class="screen-services__card"><h4>Kurumsal Web Sitesi</h4><p>Profesyonel kurumsal kimlik.</p></div>
+                  <div class="screen-services__card"><h4>Cafe & Restoran</h4><p>Dijital menü ve tanıtım.</p></div>
+                  <div class="screen-services__card"><h4>Oto Detailing</h4><p>Randevu ve tanıtım sitesi.</p></div>
+                  <div class="screen-services__card"><h4>E-Ticaret</h4><p>Online satış platformu.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="screen-state" id="sync-portfolio">
+              <div class="screen-nav">
+                <div class="screen-nav__logo"><span class="screen-nav__dot"></span> PROPLY</div>
+                <div class="screen-nav__links"><span>Çalışmalar</span></div>
+              </div>
+              <div class="screen-portfolio">
+                <h3>Çalışmalarımız</h3>
+                <div class="screen-portfolio__grid">
+                  <div class="screen-portfolio__item" data-label="Otantik" style="background:linear-gradient(135deg,#f97316,#ea580c);"></div>
+                  <div class="screen-portfolio__item" data-label="Olena" style="background:linear-gradient(135deg,#059669,#047857);"></div>
+                  <div class="screen-portfolio__item" data-label="WV" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);"></div>
+                </div>
+              </div>
+            </div>
+            <div class="screen-state" id="sync-contact">
+              <div class="screen-nav">
+                <div class="screen-nav__logo"><span class="screen-nav__dot"></span> PROPLY</div>
+                <div class="screen-nav__links"><span>İletişim</span></div>
+              </div>
+              <div class="screen-contact">
+                <h3>İletişime Geçin</h3>
+                <p>Projeniz için fiyat teklifi alın.</p>
+                <div class="screen-contact__form">
+                  <input class="screen-contact__input" placeholder="E-posta" readonly>
+                  <button class="screen-contact__btn">Gönder</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="laptop-base"></div>
+      </div>
+
+      <!-- Copy over laptop -->
+      <div class="sc-copy sc-copy--lead" style="bottom:clamp(2rem,8vh,6rem);">
+        <p class="sc-label" data-sc-cue="0.05 0.25">01 · Hizmetler</p>
+        <h2 class="sc-display sc-display--md" data-sc-cue="0.05 0.25" data-sc-kinetic="lines">Kurumsal, cafe,<br>oto detailing.</h2>
+      </div>
+      <div class="sc-copy sc-copy--trail" style="bottom:clamp(2rem,8vh,6rem);">
+        <p class="sc-label" data-sc-cue="0.28 0.52">02 · Çalışmalar</p>
+        <h2 class="sc-display sc-display--md" data-sc-cue="0.28 0.52" data-sc-kinetic="lines">Her biri<br>özel tasarım.</h2>
+      </div>
+      <div class="sc-copy sc-copy--lead" style="bottom:clamp(2rem,8vh,6rem);">
+        <p class="sc-label" data-sc-cue="0.55 0.78">03 · İletişim</p>
+        <h2 class="sc-display sc-display--md" data-sc-cue="0.55 0.78" data-sc-kinetic="lines">Projenizi<br>anlatalım.</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · CONTEXT: flow (what Proply does) -->
+  <section class="sc-section" data-sc-act="flow" data-sc-drift="#0a0806">
+    <div class="section--context">
+      <div class="sc-stack">
+        <p class="tagline">Ne yapıyoruz?</p>
+        <h2 data-sc-in data-sc-stagger="70">İşletmeniz için <span>premium</span> web deneyimleri.</h2>
+        <p data-sc-in data-sc-stagger="70">PROPLY, küçük işletmelerin dijital dünyada daha profesyonel görünmesine yardımcı olan modern bir web stüdyosudur.</p>
+        <p data-sc-in data-sc-stagger="70">Tasararımdan geliştirmeye kadar sürecin tamamını üstleniyor, her işletme için markasına uygun ve amacına hizmet eden web siteleri oluşturuyoruz.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · CLOSE: pin + CTA -->
+  <section id="close" data-sc-act="pin" data-sc-span="1.2" data-sc-drift="#0a0806">
+    <div data-sc-stage class="close" data-sc-spotlight>
+      <div class="close__inner" style="text-align:center;">
+        <p class="tagline" data-sc-cue="0.06">PROPLY</p>
+        <h2 class="sc-display sc-display--lg" data-sc-cue="0.06" data-sc-kinetic="lines">Dijital dünyanızı<br>kuralım.</h2>
+        <p class="sc-body" data-sc-cue="0.12" style="margin:var(--sc-5) auto 0;text-align:center;">1–7 gün içinde yayına alın.</p>
+        <a class="close-cta" href="https://wa.me/905466982443?text=Merhaba!%20Web%20sitem%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noreferrer" data-sc-magnet="0.2" data-sc-cue="0.18" data-sc-rise="0" style="margin-top:var(--sc-6);">WhatsApp'tan Yaz →</a>
+      </div>
+      <footer style="position:absolute;bottom:2rem;left:0;right:0;text-align:center;">
+        <p style="font-size:0.7rem;color:var(--sc-ink-soft);opacity:0.5;">© 2026 PROPLY. Tüm hakları saklıdır.</p>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<script src="scrollcraft.js"></script>
+<script>
+  // Mount engine
+  ScrollCraft.mount(document.body);
+
+  // ── Screen-synced scroll scrub ──
+  const syncAct = document.querySelectorAll('[data-sc-act]')[2]; // Act 3
+  const syncScreens = ['sync-hero', 'sync-services', 'sync-portfolio', 'sync-contact'];
+
+  if (syncAct) {
+    syncAct.addEventListener('sc:progress', (e) => {
+      const p = e.detail.p;
+      const idx = Math.min(Math.floor(p * syncScreens.length), syncScreens.length - 1);
+      syncScreens.forEach((id, i) => {
+        document.getElementById(id)?.classList.toggle('active', i === idx);
+      });
+    });
+  }
+
+  // ── Particles ──
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let w, h;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.5 + 0.5,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3,
+      o: Math.random() * 0.4 + 0.1,
+    });
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(249, 115, 22, ${p.o})`;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if (p.x < 0 || p.x > w) p.dx *= -1;
+      if (p.y < 0 || p.y > h) p.dy *= -1;
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+</script>
+</body>
+</html>
