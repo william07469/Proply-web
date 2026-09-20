@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+﻿import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/navbar";
 import { Hero } from "@/components/site/hero";
 import { Stats } from "@/components/site/stats";
@@ -207,8 +207,7 @@ function Index() {
         <About />
         <Faq />
         <Cta />
-        <Contact />
-      </main>
+        <Contact />      </main>
       <Footer />
       <WhatsAppFloat />
     </div>

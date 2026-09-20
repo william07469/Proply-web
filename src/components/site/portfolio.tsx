@@ -1,34 +1,31 @@
 import { ArrowUpRight } from "lucide-react";
-import workOtantik from "@/assets/work-otantik.webp";
-import workOlina from "@/assets/work-olina.webp";
-import workWv from "@/assets/work-wv.webp";
-import workKata from "@/assets/work-kata.webp";
 import { Reveal } from "./reveal";
 import { SectionHeading } from "./section-heading";
 import { useLang } from "@/lib/i18n";
+import workOtantik from "@/assets/work-otantik.webp";
+import workOlina from "@/assets/work-olina.webp";
+import workKata from "@/assets/work-kata.webp";
+import workWv from "@/assets/work-wv.webp";
 
 const PROJECT_META = [
-  { name: "Otantik Turkish Restaurant", category: "Restaurant Website", url: "https://otantik-turkish.lovable.app", image: workOtantik, metric: { tr: "Mobil trafik artışı", en: "Mobile traffic growth", value: "+60%" } },
-  { name: "Olina Coffee",               category: "Cafe Website",        url: "https://olina-coffee.lovable.app",  image: workOlina,   metric: { tr: "Teslim süresi",       en: "Delivery time",     value: "3 gün" } },
-  { name: "WV Detailing",               category: "Auto Detailing",      url: "https://wv-detailling.lovable.app/",image: workWv,      metric: { tr: "Google sıralama",    en: "Google ranking",    value: "#1" } },
-  { name: "Kata Coffee",                category: "Cafe Website",        url: "https://kata-coffee.base44.app",   image: workKata,    metric: { tr: "Müşteri memnuniyeti",en: "Client satisfaction",value: "100%" } },
+  { name: "Kurumsal Web Sitesi", category: "Corporate Website", url: "https://otantik-turkish.lovable.app", image: workOtantik, metric: { tr: "Mobil trafik artışı", en: "Mobile traffic growth", value: "+60%" } },
+  { name: "Cafe & Restoran", category: "Cafe Website", url: "https://olina-coffee.lovable.app", image: workOlina, metric: { tr: "Teslim süresi", en: "Delivery time", value: "3 gün" } },
+  { name: "Oto Detailing", category: "Auto Detailing", url: "https://wv-detailling.lovable.app/", image: workWv, metric: { tr: "Google sıralama", en: "Google ranking", value: "#1" } },
+  { name: "E-Ticaret Sitesi", category: "E-Commerce", url: "https://kata-coffee.base44.app", image: workKata, metric: { tr: "Müşteri memnuniyeti", en: "Client satisfaction", value: "100%" } },
 ];
 
 export function Portfolio() {
   const { t, lang } = useLang();
-
   const projects = PROJECT_META.map((meta, i) => ({
     ...meta,
-    description: t.portfolio.projects[i].description,
+    description: t.portfolio.projects[i]?.description ?? "",
   }));
-
   const [hero, ...grid] = projects;
-
+  if (!hero) return null;
   return (
     <section id="works" className="bg-background py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <SectionHeading kicker={t.portfolio.kicker} title={t.portfolio.title} description={t.portfolio.desc} />
-
         {/* Hero project — wide, editorial */}
         <Reveal className="mt-14">
           <a
@@ -73,7 +70,6 @@ export function Portfolio() {
             </div>
           </a>
         </Reveal>
-
         {/* Grid — 3 remaining */}
         <div className="mt-3 grid gap-3 md:grid-cols-3">
           {grid.map((project, i) => (
